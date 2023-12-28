@@ -1,11 +1,14 @@
+import {useState} from 'react'
 import {Button, Container, Navbar, Modal, Image} from 'react-bootstrap'
+
 
 
 export default function NavBar() {
 
-  const GoToCart = () => {
-    
-  }
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true)
 
   return (
     <div> 
@@ -19,17 +22,17 @@ export default function NavBar() {
               <h2>.</h2>
               <h2 className='Shopper'> Shopper</h2> 
              </div>
-            <button>Check Out <Image /></button>
+             <Button type='button' onClick={handleShow}>Check Out <Image /></Button>
           </div>
 
           
           <div className='display-modal'>
-            <Modal>
+            <Modal show={show} onHide={handleClose}>
               <Modal.Header>
                 <Modal.Title>Your Shopping Cart</Modal.Title>
-                <Button className='Close-Modal'>X</Button>
-                <Modal.Body>
-                  There are no items in your shopping cart at this time.
+                <Button type='button' className='Close-Modal' onClick={handleClose}>X</Button>
+                <Modal.Body className='modal-body'>
+                  <p>There are no items in your shopping cart at this time.</p>
                 </Modal.Body>
               </Modal.Header>  
             </Modal>
