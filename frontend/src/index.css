@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.Brand-Name {
+  display: flex;
+  justify-content: left;
+  
+}
+
+.nav {
+  background-color: #a7a8ad
+}
+
+  /*Websight Title*/
+  .U {
+    color: #F10F01
+  }
+
+  .S {
+    color: #ffffff
+  }
+
+  .Shopper {
+    font-style: italic;
+    color: #0E42E6;
+  }
