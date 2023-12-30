@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Tektur:wght@600&display=swap');
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -24,8 +27,21 @@ code {
   background-color: #a7a8ad
 }
 
+.closed-nav-bar {
+display: flex;
+justify-content: space-between
+}
+
   /*Websight Title*/
+
+  .Brand-Name {
+    
+    font-family: 'Tektur';
+    font-size: 1.75rem
+  }
+  
   .U {
+    padding-left: 3rem;
     color: #F10F01
   }
 
@@ -34,6 +50,8 @@ code {
   }
 
   .Shopper {
+    padding-right: 75rem;
+    padding-left: .5rem;
     font-style: italic;
     color: #0E42E6;
   }
