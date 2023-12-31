@@ -1,4 +1,5 @@
-import Navbar from './components/NavBar.js'
+import Navbar from './components/NavBar.js';
+
 
 function App() {
   return (

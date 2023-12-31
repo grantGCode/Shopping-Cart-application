@@ -1,10 +1,15 @@
 import {useState} from 'react'
 import {Button, Container, Navbar, Modal, Image} from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+
+
+
 
 
 
 export default function NavBar() {
-
+  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -22,7 +27,7 @@ export default function NavBar() {
               <h2>.</h2>
               <h2 className='Shopper'> Shopper</h2> 
              </div>
-             <Button type='button' onClick={handleShow}>Check Out <Image /></Button>
+             <Button type='button' onClick={handleShow}><FontAwesomeIcon icon={faCartShopping} /> Check Out <Image /></Button>
           </div>
 
           
