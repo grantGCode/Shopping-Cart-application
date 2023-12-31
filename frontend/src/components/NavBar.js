@@ -27,7 +27,10 @@ export default function NavBar() {
               <h2>.</h2>
               <h2 className='Shopper'> Shopper</h2> 
              </div>
-             <Button type='button' onClick={handleShow}><FontAwesomeIcon icon={faCartShopping} /> Check Out <Image /></Button>
+             <Button className= 'Check-Out-Button' type='button' onClick={handleShow}>
+                <FontAwesomeIcon className='Check-Out-Button.icon' icon={faCartShopping} /> 
+                <p>Check Out</p> 
+              </Button>
           </div>
 
           
