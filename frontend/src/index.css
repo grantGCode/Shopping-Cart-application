@@ -125,7 +125,7 @@ code {
       margin-right: 10rem;
 
       
-      /* padding-left: 1px; */
+      
       border-width: 5px;
       border-radius: .5px;
     }
@@ -140,6 +140,27 @@ code {
       padding-bottom: .5rem;
 
       border-radius: .25rem;
+    }
+
+    .Shopping-Cart-Title {
+      font-weight: bold;
+      font-size: large; 
+      padding-left: 1rem;
+    }
+
+    .Close-Modal {
+      margin-left: 12rem;
+      margin-bottom: 1rem;
+      
+     border-radius: .25rem;
+     border-width: 2px;
+      border-color: #1c1f47;
+      
+      justify-content: right;
+      
+      font-weight: bold;
+      color: #f33f33;
+      background-color: transparent;
     }
 
     .Modal-Window .body {
