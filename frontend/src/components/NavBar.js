@@ -14,6 +14,7 @@ export default function NavBar() {
   const [Total, SetTotal] = useState('Total $',0.00)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true)
+  
 
 
   return (
