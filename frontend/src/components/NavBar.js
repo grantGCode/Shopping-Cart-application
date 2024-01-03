@@ -2,6 +2,8 @@ import {useState} from 'react'
 import {Button, Container, Navbar, Modal, Image} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { faReceipt } from '@fortawesome/free-solid-svg-icons'
+<FontAwesomeIcon icon="fa-light fa-receipt" />
 
 
 
@@ -11,7 +13,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 export default function NavBar() {
   
   const [show, setShow] = useState(false);
-  const [Total, SetTotal] = useState('Total $',0.00)
+  const [Total, SetTotal] = useState(0.00)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true)
   
@@ -52,7 +54,8 @@ export default function NavBar() {
                 </div>
                 <div className='footer'>
                   <Modal.Footer>
-                    <div className='Total'>{Total}</div>
+                    <h3 className='Total'>Total: ${Total}</h3>
+                    <Button type='button' className='pay-button'><FontAwesomeIcon icon={faReceipt} /> Purchase</Button>
                   </Modal.Footer>
                 </div>
 
