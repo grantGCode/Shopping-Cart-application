@@ -11,9 +11,11 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 export default function NavBar() {
   
   const [show, setShow] = useState(false);
+  const [Total, setTotal] = useState("Total: $", 0)
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true)
+  
 
   return (
     <div> 
@@ -47,6 +49,11 @@ export default function NavBar() {
                 <Modal.Body >
                   <p>There are no items in your shopping cart at this time.</p>
                 </Modal.Body>
+                </div>
+                <div className='footer'>
+                  <Modal.footer>
+                    <h3 className='Total'>{Total}</h3>
+                  </Modal.footer>
                 </div>
             </Modal>
           </div>
