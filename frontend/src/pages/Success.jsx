@@ -3,7 +3,7 @@ import React from 'react'
 function success() {
   return (
     <div>
-      success.js
+      <h1>success.js</h1>
     </div>
   )
 }

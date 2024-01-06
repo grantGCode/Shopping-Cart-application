@@ -3,7 +3,7 @@ import React from 'react'
 function cancel() {
   return (
     <div>
-      cancel.js
+      <h1>cancel.js</h1>
     </div>
   )
 }
