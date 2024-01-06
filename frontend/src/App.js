@@ -1,12 +1,22 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Navbar from './components/NavBar.js'
-
+import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Cancel from './pages/Cancel.jsx'
+import Store from './pages/Store.jsx'
+import Success from './pages/Success.jsx'
 
 function App() {
   return (
-    <>
-      <Navbar />  
-    </>
+    <Router>
+      <Routes>
+        <Route 
+          exact path='/' 
+          element={
+            <Store />
+          }
+        ></Route>  
+        <Route path='/success' element={<Success />} />
+        <Route path='/cancel' element={<Cancel />} />
+      </Routes>
+    </Router>
   );
 }
 

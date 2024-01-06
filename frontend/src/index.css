@@ -15,3 +15,17 @@ code {
     monospace;
 }
 
+
+.closed-nav-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Brand-Name {
+  display: flex;
+  justify-content: left;
+}
+
+.Brand-Name .Shopper {
+  padding-left: 1rem;
+}
