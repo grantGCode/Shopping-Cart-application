@@ -1,4 +1,4 @@
-const products = [
+export const products = [
 { id: 1, title: 'Product 1', price: 10.99 },
 { id: 2, title: 'Product 2', price: 17.95 },
 { id: 3, title: 'Product 3', price: 8.59 },
@@ -7,12 +7,13 @@ const products = [
 ]
 
 
-const getProductData = (id) => {
+export const getProductData = (id) => {
    let productData = products.find((product) => product.id === id)
-   return(productData)
- 
-    
+
+   if(productData === undefined){
+    console.log(`There is no product for this ID: ${id}`)
+    return undefined
+   }
+   return(productData)   
 }
 
-console.log('test')
-console.log(getProductData(1))
