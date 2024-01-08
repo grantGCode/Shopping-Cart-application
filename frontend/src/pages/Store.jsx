@@ -1,5 +1,6 @@
 import Navbar from '../components/NavBar.js'
 import {products, getProductData} from '../productStore.js'
+import {Row, Col} from 'react-bootstrap'
 
 
 function store() {
@@ -7,10 +8,13 @@ function store() {
     <div>
       <Navbar />
       <h2>store.js</h2>
-      <p>{products.map((products, index) => (
-        <li className='products' key={index}>{products.title}{` $${products.price}`}</li>
-      ))}</p>
-
+      <Row>
+        <Col>
+          <p>{products.map((products, index) => (
+            <li className='products' key={index}>{products.title}{` $${products.price}`}</li>
+          ))}</p>
+          </Col>
+      </Row>
     </div>
   )
 }
