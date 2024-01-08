@@ -1,12 +1,16 @@
 import Navbar from '../components/NavBar.js'
-import products from '../productStore.js'
-import getProductData from '../productStore.js'
+import {products, getProductData} from '../productStore.js'
+
 
 function store() {
   return (
     <div>
-      <h1>store.js</h1>
       <Navbar />
+      <h2>store.js</h2>
+      <p>{products.map((products, index) => (
+        <li className='products' key={index}>{products.title}{` $${products.price}`}</li>
+      ))}</p>
+
     </div>
   )
 }
