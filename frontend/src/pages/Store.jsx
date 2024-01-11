@@ -6,6 +6,7 @@ function store() {
   return (
     <div>
       <h1>store.js</h1>
+      {/* <h3>{products}</h3> */}
       <Navbar />
     </div>
   )
