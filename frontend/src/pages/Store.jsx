@@ -1,6 +1,6 @@
 import Navbar from '../components/NavBar.js'
 import {products, getProductData} from '../productStore.js'
-import {Row, Col} from 'react-bootstrap'
+import {Row, Col, Form, Button} from 'react-bootstrap'
 
 
 function store() {
@@ -25,6 +25,12 @@ function store() {
           </Col>
         ))}
         </Row>
+        <Form>
+          <h2>Form</h2>
+          <Button>+ Add To Cart</Button>
+          <Button>- Remove From Cart</Button>
+          <Button>Remove All From Cart</Button>
+        </Form>
     </div>
   )
 }
