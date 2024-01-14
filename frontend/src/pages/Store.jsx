@@ -1,9 +1,22 @@
+import  {useState} from 'react'
 import Navbar from '../components/NavBar.js'
 import {products, getProductData} from '../productStore.js'
 import {Row, Col, Form, Button} from 'react-bootstrap'
 
 
-function store() {
+function Store() {
+const [CartItems, setCartItems] = useState(0);
+
+// const addOneToCart = () =>{
+//   let itemsInCart = CartItems
+//   /* Addfetch funtionaity */
+  
+//   /* Incrament csrt Item count */
+//       setCartItems( itemsInCart += 1)
+//   }
+     
+
+
   return (
     <div>
       <Navbar />
@@ -26,8 +39,8 @@ function store() {
         ))}
         </Row>
         <Form>
-          <h2>Form</h2>
-          <Button>+ Add To Cart</Button>
+          <h2>Your Cart Has: {CartItems} Items</h2>
+          <Button /* onClick={addOneToCart()} */>+ Add To Cart</Button>
           <Button>- Remove From Cart</Button>
           <Button>Remove All From Cart</Button>
         </Form>
@@ -35,4 +48,4 @@ function store() {
   )
 }
 
-export default store
+export default Store
