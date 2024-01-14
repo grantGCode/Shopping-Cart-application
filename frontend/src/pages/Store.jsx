@@ -11,12 +11,16 @@ const addOneToCart = () =>{
     /* Addfetch funtionaity */
   
   /* Incrament cart Item count */
-    // setCartItemCount(1++)
+    setCartItemCount((cartStorage) => cartStorage + 1)
   }
 
 const removeOneItem = () => {
   /* Discernment cart Item count */
-    // setCartItemCount(1--)
+    // if (cartStorage < 1) {
+      // return console.log('Your Shopping cart has no items in it.')
+    // } else {
+    setCartItemCount((cartStorage) => cartStorage - 1)
+    // };
 
 }
      
@@ -52,7 +56,7 @@ const deleteFromCart = () => {
         <Form>
           <h2>Your Cart Has: {CartItemCount} Items</h2>
           <Button onClick={addOneToCart}>+ Add To Cart</Button>
-          <Button onClick={{removeOneItem}}>- Remove From Cart</Button>
+          <Button onClick={removeOneItem}>- Remove From Cart</Button>
           <Button onClick={deleteFromCart}>Remove All From Cart</Button>
         </Form>
     </div>
