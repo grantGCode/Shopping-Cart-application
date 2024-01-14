@@ -55,9 +55,23 @@ const deleteFromCart = () => {
         </Row>
         <Form>
           <h2>Your Cart Has: {CartItemCount} Items</h2>
-          <Button onClick={addOneToCart}>+ Add To Cart</Button>
-          <Button onClick={removeOneItem}>- Remove From Cart</Button>
-          <Button onClick={deleteFromCart}>Remove All From Cart</Button>
+          <div className='buttons'>
+            <Button 
+              variant="primary" 
+              size="lg" 
+              onClick={addOneToCart}
+            >+ Add To Cart
+            </Button>
+            <Button 
+              onClick={removeOneItem}
+              >- Remove From Cart
+            </Button>
+            <Button
+              variant="danger" 
+              onClick={deleteFromCart}
+            >Remove All From Cart
+            </Button>
+          </div>
         </Form>
     </div>
   )
