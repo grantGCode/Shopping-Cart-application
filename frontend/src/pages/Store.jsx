@@ -5,17 +5,28 @@ import {Row, Col, Form, Button} from 'react-bootstrap'
 
 
 function Store() {
-const [CartItems, setCartItems] = useState(0);
+const [CartItemCount, setCartItemCount] = useState(0);
 
-// const addOneToCart = () =>{
-//   let itemsInCart = CartItems
-//   /* Addfetch funtionaity */
+const addOneToCart = () =>{
+    /* Addfetch funtionaity */
   
-//   /* Incrament csrt Item count */
-//       setCartItems( itemsInCart += 1)
-//   }
-     
+  /* Incrament cart Item count */
+    // setCartItemCount(1++)
+  }
 
+const removeOneItem = () => {
+  /* Discernment cart Item count */
+    // setCartItemCount(1--)
+
+}
+     
+const deleteFromCart = () => {
+  /* Purge Cart of All Items */
+
+
+  /* Purge Item Count */  
+  setCartItemCount(0)
+}
 
   return (
     <div>
@@ -39,10 +50,10 @@ const [CartItems, setCartItems] = useState(0);
         ))}
         </Row>
         <Form>
-          <h2>Your Cart Has: {CartItems} Items</h2>
-          <Button /* onClick={addOneToCart()} */>+ Add To Cart</Button>
-          <Button>- Remove From Cart</Button>
-          <Button>Remove All From Cart</Button>
+          <h2>Your Cart Has: {CartItemCount} Items</h2>
+          <Button onClick={addOneToCart}>+ Add To Cart</Button>
+          <Button onClick={{removeOneItem}}>- Remove From Cart</Button>
+          <Button onClick={deleteFromCart}>Remove All From Cart</Button>
         </Form>
     </div>
   )
