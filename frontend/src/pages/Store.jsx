@@ -2,6 +2,7 @@ import  {useState} from 'react'
 import Navbar from '../components/NavBar.js'
 import {products, getProductData} from '../productStore.js'
 import {Row, Col, Form, Button} from 'react-bootstrap'
+import ProductCard from '../ProductCard.js'
 
 
 function Store() {
@@ -36,23 +37,19 @@ const deleteFromCart = () => {
     <div>
       <Navbar />
       <h2>store.js</h2>
-        <Row style=
-          {{
-            display: 'block',
-            padding:10, 
-            margin:95, 
-            backgroundColor: 'lightBlue'
-          }}>
-          {products.map((products, index) => (
-            <Col 
-              style={{margin:12}} 
-              className='products'  
-              key={index}
-            >
-            {products.title}{` $${products.price}`}
-          </Col>
-        ))}
-        </Row>
+        <ProductCard>
+          <Row>
+            {products.map((products, index) => (
+              <Col 
+                style={{margin:12}} 
+                className='products'  
+                key={index}
+              >
+                {products.title}{` $${products.price}`}
+              </Col>
+            ))}
+          </Row>
+        </ProductCard>
         <Form>
           <h2>Your Cart Has: {CartItemCount} Items</h2>
           <div className='buttons'>
