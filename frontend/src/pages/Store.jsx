@@ -2,7 +2,7 @@ import  {useState} from 'react'
 import Navbar from '../components/NavBar.js'
 import {products, getProductData} from '../productStore.js'
 import {Row, Col, Form, Button} from 'react-bootstrap'
-import ProductCard from '../ProductCard.js'
+import ProductCard from '../components/ProductCard.js'
 
 
 function Store() {
@@ -46,6 +46,9 @@ const deleteFromCart = () => {
                 key={index}
               >
                 {products.title}{` $${products.price}`}
+                {'  '}
+                <Button>Add</Button>
+                <Button>Remove</Button>
               </Col>
             ))}
           </Row>
