@@ -37,7 +37,7 @@ export default function NavBar() {
 
           
           <div className='display-modal'>
-            <Modal className='Modal-Window' show={show} onHide={handleClose}>
+            <Modal align='center' className='Modal-Window' show={show} onHide={handleClose}>
               
                 <div className='Header'>
                   <Modal.Header className='Header'>
