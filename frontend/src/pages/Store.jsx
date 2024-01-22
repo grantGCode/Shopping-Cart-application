@@ -38,7 +38,7 @@ const deleteFromCart = () => {
       <Navbar />
       <h2>store.js</h2>
             <Stack direction="horizontal" gap={3}>
-              <ProductCard  />  
+              <ProductCard class="border border-primary"  />  
             </Stack>
         <Form>
           <h2>Your Cart Has: {CartItemCount} Items</h2>

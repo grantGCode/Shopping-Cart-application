@@ -1,38 +1,63 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { products, getProductData } from "./productStore";
 
+const CartItemContext = createContext({});
 
-export const getProductQuantity = () => {
+export const ItemFunctionProvider = ({children}) => {
 
+const getProductQuantity = () => {
+  
 }
 
-export const addOneToCart = () =>{
+const addOneToCart = () =>{
   /* Addfetch funtionaity */
   
   /* Incrament cart Item count */
-    setCartItemCount((cartStorage) => cartStorage + 1)
+    // setCartItemCount((cartStorage) => cartStorage + 1)
+  }
+  
+const removeOneItem = () => {
+  /* Discernment cart Item count */
+    // if (cartStorage < 1) {
+      // return console.log('Your Shopping cart has no items in it.')
+    // } else {
+      // setCartItemCount((cartStorage) => cartStorage - 1)
+     // };
+        
+  }
+      
+const deleteFromCart = () => {
+  /* Purge Cart of All Items */
+        
+        
+  /* Purge Item Count */  
+  // setCartItemCount(0)
+  }
+    
+const getTotaCoast = () => {
+
+  
   }
 
-export  const removeOneItem = () => {
-    /* Discernment cart Item count */
-      // if (cartStorage < 1) {
-        // return console.log('Your Shopping cart has no items in it.')
-      // } else {
-      setCartItemCount((cartStorage) => cartStorage - 1)
-      // };
-  
-}
-       
-export  const deleteFromCart = () => {
-    /* Purge Cart of All Items */
-  
-  
-    /* Purge Item Count */  
-    setCartItemCount(0)
-}
 
-export const getTotaCoast = () => {
+const ProductFunctionsItems = {
+    getProductQuantity,
+    addOneToCart,
+    removeOneItem,
+    deleteFromCart,
+    getTotaCoast,
+  
+  }
 
-}
+  return <CartItemContext value={ProductFunctionsItems}>{children}</CartItemContext>;
 
-export const Items = [];
+};
+
+
+const Items = [];
+
+
+  export const useCartItemContext = () => {
+
+    return useContext(CartItemContext)
+  }
