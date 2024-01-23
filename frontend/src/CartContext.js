@@ -7,6 +7,7 @@ const ShoppingCartContext = createContext({});
 
 export const CartProvider = ({children}) => {
   const [Items, setItems] = useState([]);
+  const [CartItemCount, setCartItemCount] = useState(0);
 
 
 
@@ -18,7 +19,7 @@ export const CartProvider = ({children}) => {
     /* Addfetch funtionaity */
     
     /* Incrament cart Item count */
-      // setCartItemCount((cartStorage) => cartStorage + 1)
+      setCartItemCount((cartStorage) => cartStorage + 1)
   }
     
   const removeOneItem = () => {
@@ -26,7 +27,7 @@ export const CartProvider = ({children}) => {
       // if (cartStorage < 1) {
         // return console.log('Your Shopping cart has no items in it.')
       // } else {
-        // setCartItemCount((cartStorage) => cartStorage - 1)
+        setCartItemCount((cartStorage) => cartStorage - 1)
       // };
           
   }
@@ -36,7 +37,7 @@ export const CartProvider = ({children}) => {
           
           
     /* Purge Item Count */  
-    // setCartItemCount(0)
+    setCartItemCount(0)
   }
       
   const getTotaCoast = () => {
@@ -52,6 +53,10 @@ export const CartProvider = ({children}) => {
     removeOneItem,
     deleteFromCart,
     getTotaCoast,
+    setCartItemCount,
+
+    CartItemCount,  
+    Items,
     
   }
 
