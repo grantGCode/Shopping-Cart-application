@@ -3,35 +3,14 @@ import Navbar from '../components/NavBar.js'
 import { products, getProductData} from '../productStore.js'
 import {Row, Col, Form, Button, Stack} from 'react-bootstrap'
 import ProductCard from '../components/ProductCard.js'
-
+import { useShoppingCartContext } from '../CartContext.js'
+ 
 
 function Store() {
-const [CartItemCount, setCartItemCount] = useState(0);
+  const [CartItemCount, setCartItemCount] = useState(0);
+  const { addOneToCart, removeOneItem, deleteFromCart} = useShoppingCartContext();
 
-const addOneToCart = () =>{
-    /* Addfetch funtionaity */
   
-  /* Incrament cart Item count */
-    setCartItemCount((cartStorage) => cartStorage + 1)
-  }
-
-const removeOneItem = () => {
-  /* Discernment cart Item count */
-    // if (cartStorage < 1) {
-      // return console.log('Your Shopping cart has no items in it.')
-    // } else {
-    setCartItemCount((cartStorage) => cartStorage - 1)
-    // };
-
-}
-     
-const deleteFromCart = () => {
-  /* Purge Cart of All Items */
-
-
-  /* Purge Item Count */  
-  setCartItemCount(0)
-}
 
   return (
     <div>

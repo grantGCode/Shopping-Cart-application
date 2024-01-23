@@ -1,63 +1,66 @@
 import { createContext, useContext, useState } from "react";
 import { products, getProductData } from "./productStore";
 
-const CartItemContext = createContext({});
+const ShoppingCartContext = createContext({});
 
-export const ItemFunctionProvider = ({children}) => {
+export const CartProvider = ({children}) => {
 
-const getProductQuantity = () => {
-  
-}
-
-const addOneToCart = () =>{
-  /* Addfetch funtionaity */
-  
-  /* Incrament cart Item count */
-    // setCartItemCount((cartStorage) => cartStorage + 1)
+  const getProductQuantity = () => {
+    
   }
-  
-const removeOneItem = () => {
-  /* Discernment cart Item count */
-    // if (cartStorage < 1) {
-      // return console.log('Your Shopping cart has no items in it.')
-    // } else {
-      // setCartItemCount((cartStorage) => cartStorage - 1)
-     // };
-        
-  }
-      
-const deleteFromCart = () => {
-  /* Purge Cart of All Items */
-        
-        
-  /* Purge Item Count */  
-  // setCartItemCount(0)
+
+  const addOneToCart = () =>{
+    /* Addfetch funtionaity */
+    
+    /* Incrament cart Item count */
+      // setCartItemCount((cartStorage) => cartStorage + 1)
   }
     
-const getTotaCoast = () => {
+  const removeOneItem = () => {
+    /* Discernment cart Item count */
+      // if (cartStorage < 1) {
+        // return console.log('Your Shopping cart has no items in it.')
+      // } else {
+        // setCartItemCount((cartStorage) => cartStorage - 1)
+      // };
+          
+  }
+        
+  const deleteFromCart = () => {
+    /* Purge Cart of All Items */
+          
+          
+    /* Purge Item Count */  
+    // setCartItemCount(0)
+  }
+      
+  const getTotaCoast = () => {
 
-  
+    
   }
 
 
-const ProductFunctionsItems = {
+
+  const CatFunctionsAndItems = {
     getProductQuantity,
     addOneToCart,
     removeOneItem,
     deleteFromCart,
     getTotaCoast,
-  
+    
   }
 
-  return <CartItemContext value={ProductFunctionsItems}>{children}</CartItemContext>;
+  return <ShoppingCartContext value={CatFunctionsAndItems}>
+    {children}
+  </ShoppingCartContext>;
 
 };
 
 
-const Items = [];
+// const Items = [];
 
 
-  export const useCartItemContext = () => {
+  export const useShoppingCartContext = () => {
 
-    return useContext(CartItemContext)
+    return useContext(ShoppingCartContext)
   }

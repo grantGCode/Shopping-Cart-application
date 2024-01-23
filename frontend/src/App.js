@@ -2,12 +2,12 @@ import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Cancel from './pages/Cancel.jsx'
 import Store from './pages/Store.jsx'
 import Success from './pages/Success.jsx'
-import { ItemFunctionProvider } from './CartContext.js'
+import { CartProvider } from './CartContext.js'
 
 
 function App() {
   return (
-    <ItemFunctionProvider>
+    <CartProvider>
       <Router>
         <Routes>
           <Route 
@@ -20,7 +20,7 @@ function App() {
           <Route path='/cancel' element={<Cancel />} />
         </Routes>
       </Router>
-    </ItemFunctionProvider>
+    </CartProvider>
   );
 }
 
