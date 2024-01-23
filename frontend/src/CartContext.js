@@ -1,9 +1,14 @@
 import { createContext, useContext, useState } from "react";
 import { products, getProductData } from "./productStore";
 
+
+
 const ShoppingCartContext = createContext({});
 
 export const CartProvider = ({children}) => {
+  const [Items, setItems] = useState([]);
+
+
 
   const getProductQuantity = () => {
     
@@ -50,14 +55,17 @@ export const CartProvider = ({children}) => {
     
   }
 
-  return <ShoppingCartContext value={CatFunctionsAndItems}>
+  return (
+    <ShoppingCartContext.Provider 
+      value={CatFunctionsAndItems}
+    >
     {children}
-  </ShoppingCartContext>;
+    </ShoppingCartContext.Provider>
+  );
 
 };
 
 
-// const Items = [];
 
 
   export const useShoppingCartContext = () => {
