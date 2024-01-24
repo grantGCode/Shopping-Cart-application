@@ -8,7 +8,7 @@ import { useShoppingCartContext } from '../CartContext.js'
 
 function Store() {
   
-  const { CartItemCount, addOneToCart, removeOneItem, deleteFromCart} = useShoppingCartContext();
+  const { CartItemCount, deleteFromCart} = useShoppingCartContext();
 
   
 
@@ -22,16 +22,6 @@ function Store() {
         <Form>
           <h2>Your Cart Has: {CartItemCount} Items</h2>
           <div className='buttons'>
-            <Button 
-              variant="primary" 
-              size="lg" 
-              onClick={addOneToCart}
-            >+ Add To Cart
-            </Button>
-            <Button 
-              onClick={removeOneItem}
-              >- Remove From Cart
-            </Button>
             <Button
               variant="danger" 
               onClick={deleteFromCart}

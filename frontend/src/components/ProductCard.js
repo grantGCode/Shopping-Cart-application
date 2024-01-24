@@ -1,6 +1,10 @@
 import { Card, Button, Form, Row, Col, Stack } from 'react-bootstrap';
 import { products, getProductData} from '../productStore.js'
+import { useShoppingCartContext } from '../CartContext.js'
 function ProductCard() {
+
+  const { addOneToCart, removeOneItem,} = useShoppingCartContext();
+
   return (
     <Form>
         <Card>
@@ -10,8 +14,22 @@ function ProductCard() {
                     {products.map((products, index) => (
                       <Col align='center' key={index}> 
                           {products.title}{` $${products.price}`}
-                          <Button>Add</Button>
-                          <Button>Remove</Button>
+                          {' '}
+                          <Button
+                            variant="primary" 
+                            size="lg" 
+                            onClick={addOneToCart}
+                          >
+                           + Add To Cart
+                          </Button>
+                          {' '}
+                          <Button
+                            variant="primary" 
+                            size="lg"
+                            onClick={removeOneItem}
+                          >
+                           - Remove From Cart
+                          </Button>
                       </Col>
                      ))}
                   </Row>
