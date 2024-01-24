@@ -18,22 +18,22 @@ export const CartProvider = ({children}) => {
   const addOneToCart = (id, data) =>{
     
     let  quantity = 0
-    let item = {id:id, quantity:quantity}
+    let item = {productId:id, productQuantity:quantity}
     
     // fetch product by id
-      getProductData(data) 
-      .then (response => {
-        if (!response.ok) {
-          console.log('there was a problem getting the data line 24-28');
-        }
-      })
+      let itemData = getProductData(data) 
+      // .then (response => {
+      //   if (!response.ok) {
+      //     console.log('there was a problem getting the data line 24-28');
+      //   }
+      // })
     // Adding Items to cart
-      .then(data => setItems(Items.push(item)))
+      // .then(data => setItems(Items.push(item)))
       
     // Incrament cart Item count
-      .then(setCartItemCount((cartStorage) => cartStorage + 1))
+      // .then(setCartItemCount((cartStorage) => cartStorage + 1))
 
-      .then(console.log(Items))
+      console.log(itemData)
       
   };
     

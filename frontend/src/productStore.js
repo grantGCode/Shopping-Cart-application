@@ -13,7 +13,10 @@ export const getProductData = (id) => {
    if(productData === undefined){
     console.log(`There is no product for this ID: ${id}`)
     return undefined
-   }
-   return(productData)   
+   } else {
+      // return(productData)
+      console.log('Line 18 productStore.js', productData) 
+   }  
 }
 
+ 

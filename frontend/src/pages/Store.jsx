@@ -15,7 +15,6 @@ function Store() {
   return (
     <div>
       <Navbar />
-      <h2>store.js</h2>
             <Stack direction="horizontal" gap={3}>
               <ProductCard class="border border-primary"  />  
             </Stack>
