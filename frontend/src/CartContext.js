@@ -15,12 +15,27 @@ export const CartProvider = ({children}) => {
     
   }
 
-  const addOneToCart = () =>{
-    /* Addfetch funtionaity */
+  const addOneToCart = (id, data) =>{
     
-    /* Incrament cart Item count */
-      setCartItemCount((cartStorage) => cartStorage + 1)
-  }
+    let  quantity = 0
+    let item = {id:id, quantity:quantity}
+    
+    // fetch product by id
+      getProductData(data) 
+      .then (response => {
+        if (!response.ok) {
+          console.log('there was a problem getting the data line 24-28');
+        }
+      })
+    // Adding Items to cart
+      .then(data => setItems(Items.push(item)))
+      
+    // Incrament cart Item count
+      .then(setCartItemCount((cartStorage) => cartStorage + 1))
+
+      .then(console.log(Items))
+      
+  };
     
   const removeOneItem = () => {
     /* Discernment cart Item count */
