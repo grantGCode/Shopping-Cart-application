@@ -15,9 +15,18 @@ function Store() {
   return (
     <div>
       <Navbar />
-            <Stack direction="horizontal" gap={3}>
-              <ProductCard class="border border-primary"  />  
-            </Stack>
+            <Row
+              xs={1} 
+              md={3} 
+            >
+              {products.map((product, index) => 
+                (
+                  <Col align='center' key={index}> 
+                    <ProductCard class="border border-primary"  />  
+                  </Col>
+                ))
+              }
+            </Row>
         <Form>
           <h2>Your Cart Has: {CartItemCount} Items</h2>
           <div className='buttons'>

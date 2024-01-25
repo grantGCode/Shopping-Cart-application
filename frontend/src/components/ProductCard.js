@@ -1,38 +1,37 @@
 import { Card, Button, Form, Row, Col, Stack } from 'react-bootstrap';
 import { products, getProductData} from '../productStore.js'
-import { useShoppingCartContext } from '../CartContext.js'
-function ProductCard() {
+import { ShoppingCartContext } from '../CartContext.js'
+import { useContext } from 'react';
 
-  const { addOneToCart, removeOneItem,} = useShoppingCartContext();
+function ProductCard() {
+  const cart = useContext(ShoppingCartContext);
+  // const { addOneToCart, removeOneItem,} = useShoppingCartContext();
 
   return (
     <Form>
         <Card>
             <Card.Body>
-                <Card.Title align='center' style={{fontWeight: 'bold'}}>Products Title</Card.Title>
-                 <Row xs={1} md={3}>
-                    {products.map((products, index) => (
-                      <Col align='center' key={index}> 
-                          {products.title}{` $${products.price}`}
-                          {' '}
-                          <Button
-                            variant="primary" 
-                            size="lg" 
-                            onClick={addOneToCart}
-                          >
-                           + Add To Cart
-                          </Button>
-                          {' '}
-                          <Button
-                            variant="primary" 
-                            size="lg"
-                            onClick={removeOneItem}
-                          >
-                           - Remove From Cart
-                          </Button>
-                      </Col>
-                     ))}
-                  </Row>
+              <Row xs={1} md={3}>
+                <Col>
+                  <p>{products.map(title)}</p>{` $${products.map(price)}`}<p></p>
+                  {' '}
+                  <Button
+                    variant="primary" 
+                    size="lg" 
+                    // onClick={() => {cart.addOneToCart(product)}}
+                  >
+                   + Add To Cart
+                  </Button>
+                    {' '}
+                  <Button
+                    variant="primary" 
+                    size="lg"
+                    // onClick={removeOneItem}
+                  >
+                    - Remove From Cart
+                  </Button>
+                </Col>
+              </Row>
             </Card.Body>
         </Card>
     </Form>

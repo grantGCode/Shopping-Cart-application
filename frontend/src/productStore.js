@@ -8,6 +8,7 @@ export const products = [
 
 
 export const getProductData = (id) => {
+
    let productData = products.find((product) => product.id === id)
 
    if(productData === undefined){

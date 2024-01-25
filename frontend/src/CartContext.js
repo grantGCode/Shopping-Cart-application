@@ -3,7 +3,15 @@ import { products, getProductData } from "./productStore";
 
 
 
-const ShoppingCartContext = createContext({});
+export const ShoppingCartContext = createContext(
+  { 
+  items: [],
+  getProductQuantity: () => {},
+  addOneToCart: () => {},
+  removeOneItem: () => {},
+  deleteFromCart: () => {},
+  getTotalCost: () => {}
+});
 
 export const CartProvider = ({children}) => {
   const [Items, setItems] = useState([]);
@@ -15,13 +23,14 @@ export const CartProvider = ({children}) => {
     
   }
 
-  const addOneToCart = (id, data) =>{
+  const addOneToCart = (product) =>{
     
-    let  quantity = 0
-    let item = {productId:id, productQuantity:quantity}
+    console.log(product)
+    // let  quantity = 0
+    // let item = {productId:id, productQuantity:quantity}
     
     // fetch product by id
-      let itemData = getProductData(data) 
+      // let itemData = getProductData(data) 
       // .then (response => {
       //   if (!response.ok) {
       //     console.log('there was a problem getting the data line 24-28');
@@ -33,7 +42,7 @@ export const CartProvider = ({children}) => {
     // Incrament cart Item count
       // .then(setCartItemCount((cartStorage) => cartStorage + 1))
 
-      console.log(itemData)
+      // console.log(itemData)
       
   };
     
