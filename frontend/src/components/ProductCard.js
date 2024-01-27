@@ -3,9 +3,12 @@ import { products, getProductData} from '../productStore.js'
 import { ShoppingCartContext } from '../CartContext.js'
 import { useContext } from 'react';
 
-function ProductCard() {
+function ProductCard({products}) {
   const cart = useContext(ShoppingCartContext);
-  // const { addOneToCart, removeOneItem,} = useShoppingCartContext();
+  // const titles = products.map(product => product.title)
+  // const prices = products.map(product => product.price)
+  
+
 
   return (
     <Form>
@@ -13,7 +16,12 @@ function ProductCard() {
             <Card.Body>
               <Row xs={1} md={3}>
                 <Col>
-                  <p>{products.map(title)}</p>{` $${products.map(price)}`}<p></p>
+                 <div>
+                    <p>{products.title}</p>
+                  </div>
+                  <div>  
+                    <p>{`$${products.price}`}</p>    
+                 </div>
                   {' '}
                   <Button
                     variant="primary" 

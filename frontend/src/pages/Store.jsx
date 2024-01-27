@@ -21,8 +21,12 @@ function Store() {
             >
               {products.map((product, index) => 
                 (
-                  <Col align='center' key={index}> 
-                    <ProductCard class="border border-primary"  />  
+                  <Col align='center' > 
+                    <ProductCard 
+                      class="border border-primary"
+                      key={products.id}
+                      products={product}
+                    />  
                   </Col>
                 ))
               }
