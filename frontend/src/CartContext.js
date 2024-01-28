@@ -26,7 +26,7 @@ export const CartProvider = ({children}) => {
   const addOneToCart = (product) =>{
     
 
-    Items.push(product)
+    Items.push(product);
     console.log(Items)
     // let  quantity = 0
     // let item = {productId:id, productQuantity:quantity}
@@ -42,7 +42,7 @@ export const CartProvider = ({children}) => {
       // .then(data => setItems(Items.push(item)))
       
     // Incrament cart Item count
-      // setCartItemCount((cartStorage) => cartStorage + 1))
+      setCartItemCount((cartStorage) => cartStorage += 1)
 
       // console.log(itemData)
       
@@ -50,20 +50,20 @@ export const CartProvider = ({children}) => {
     
   const removeOneItem = (product) => {
     
-    // Items.splice(product)
-    // console.log(Items)
+    Items.splice(product)
+    console.log(Items)
     /* Discernment cart Item count */
       // if (cartStorage < 1) {
         // return console.log('Your Shopping cart has no items in it.')
       // } else {
-        // setCartItemCount((cartStorage) => cartStorage - 1)
+        setCartItemCount((cartStorage) => cartStorage -= 1)
       // };
           
   }
         
   const deleteFromCart = () => {
     /* Purge Cart of All Items */
-          
+      setItems([])
           
     /* Purge Item Count */  
     setCartItemCount(0)
