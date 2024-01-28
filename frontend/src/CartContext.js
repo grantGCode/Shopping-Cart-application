@@ -25,7 +25,9 @@ export const CartProvider = ({children}) => {
 
   const addOneToCart = (product) =>{
     
-    console.log(product)
+
+    Items.push(product)
+    console.log(Items)
     // let  quantity = 0
     // let item = {productId:id, productQuantity:quantity}
     
@@ -40,18 +42,21 @@ export const CartProvider = ({children}) => {
       // .then(data => setItems(Items.push(item)))
       
     // Incrament cart Item count
-      // .then(setCartItemCount((cartStorage) => cartStorage + 1))
+      // setCartItemCount((cartStorage) => cartStorage + 1))
 
       // console.log(itemData)
       
   };
     
-  const removeOneItem = () => {
+  const removeOneItem = (product) => {
+    
+    // Items.splice(product)
+    // console.log(Items)
     /* Discernment cart Item count */
       // if (cartStorage < 1) {
         // return console.log('Your Shopping cart has no items in it.')
       // } else {
-        setCartItemCount((cartStorage) => cartStorage - 1)
+        // setCartItemCount((cartStorage) => cartStorage - 1)
       // };
           
   }

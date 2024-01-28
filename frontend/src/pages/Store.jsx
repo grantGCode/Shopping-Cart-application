@@ -19,7 +19,7 @@ function Store() {
               xs={1} 
               md={3} 
             >
-              {products.map((product, index) => 
+              {products.map((product) => 
                 (
                   <Col align='center' > 
                     <ProductCard 

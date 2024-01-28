@@ -5,8 +5,7 @@ import { useContext } from 'react';
 
 function ProductCard({products}) {
   const cart = useContext(ShoppingCartContext);
-  // const titles = products.map(product => product.title)
-  // const prices = products.map(product => product.price)
+
   
 
 
@@ -16,17 +15,13 @@ function ProductCard({products}) {
             <Card.Body>
               <Row xs={1} md={3}>
                 <Col>
-                 <div>
-                    <p>{products.title}</p>
-                  </div>
-                  <div>  
-                    <p>{`$${products.price}`}</p>    
-                 </div>
+                  <p>{products.title}</p>
+                  <p>{`$${products.price}`}</p>    
                   {' '}
                   <Button
                     variant="primary" 
                     size="lg" 
-                    // onClick={() => {cart.addOneToCart(product)}}
+                    onClick={() => {cart.addOneToCart(products)}}
                   >
                    + Add To Cart
                   </Button>
@@ -34,7 +29,7 @@ function ProductCard({products}) {
                   <Button
                     variant="primary" 
                     size="lg"
-                    // onClick={removeOneItem}
+                    onClick={() => {cart.removeOneItem(products)}}
                   >
                     - Remove From Cart
                   </Button>
