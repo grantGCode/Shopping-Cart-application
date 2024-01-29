@@ -25,48 +25,41 @@ export const CartProvider = ({children}) => {
 
   const addOneToCart = (product) =>{
     
-
+    // Adding 1 product{} to Items[]
     Items.push(product);
+    window.alert(`${product.title} has been added to your shopping cart.`)
     console.log(Items)
-    // let  quantity = 0
-    // let item = {productId:id, productQuantity:quantity}
-    
-    // fetch product by id
-      // let itemData = getProductData(data) 
-      // .then (response => {
-      //   if (!response.ok) {
-      //     console.log('there was a problem getting the data line 24-28');
-      //   }
-      // })
-    // Adding Items to cart
-      // .then(data => setItems(Items.push(item)))
       
     // Incrament cart Item count
       setCartItemCount((cartStorage) => cartStorage += 1)
-
-      // console.log(itemData)
       
   };
     
-  const removeOneItem = (product) => {
-    
-    Items.splice(product)
-    console.log(Items)
-    /* Discernment cart Item count */
-      // if (cartStorage < 1) {
-        // return console.log('Your Shopping cart has no items in it.')
-      // } else {
-        setCartItemCount((cartStorage) => cartStorage -= 1)
-      // };
-          
+  const removeOneItem = (product, ) => {
+    //Remove one product{} from Items[]
+    for (let i = 0; i < Items.length; i++) {
+      if (Items[i].id === product.id) {
+        Items.splice(i, 1);
+        /* Discernment cart Item count */
+            setCartItemCount((cartStorage) => cartStorage -= 1)
+            window.alert(`${product.title} has been removed from your shopping cart`) //To add alet
+        break;
+      }else if (Items[i].id !== product.id) {
+        console.log(`There appears is no ${product.title} in your cart.`)
+      }//else(Items.length === 0){
+      //   console.log("It appears your shopping cart is empty")
+      // }
+    }
+    console.log(Items)          
   }
         
   const deleteFromCart = () => {
     /* Purge Cart of All Items */
       setItems([])
-          
+      window.alert('All items have been removed from your shopping cart.')  
+      
     /* Purge Item Count */  
-    setCartItemCount(0)
+      setCartItemCount(0)
   }
       
   const getTotaCoast = () => {
