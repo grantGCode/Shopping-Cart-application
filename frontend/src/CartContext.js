@@ -19,8 +19,20 @@ export const ShoppingCartContext = createContext(
     
     
     
-    const getProductQuantity = () => {
-      
+    const getProductQuantity = (product) => {
+      const idCount = {};
+
+      // Count occurrences of each id
+      for ( product of Items) {
+          const id = product.id;
+          idCount[id] = (idCount[id] || 0) + 1;
+      }
+  
+      // Print the count of each id to the console
+      for (const id in idCount) {
+          console.log(`ID ${id} appears ${idCount[id]} times in the array`);
+      }
+  
     }
 
     
@@ -28,6 +40,7 @@ export const ShoppingCartContext = createContext(
       
       // Adding 1 product{} to Items[]
       Items.push(product);
+      getProductQuantity(product)
       window.alert(`${product.title} has been added to your shopping cart.`)
       console.log(Items)
       
@@ -68,7 +81,7 @@ export const ShoppingCartContext = createContext(
   }
   
   
-  const getTotalCoast = (id, price) => {
+  const getTotalCoast = () => {
 
     let totalPrice = 0
     for (let i = 0; i < Items.length; i++) {
