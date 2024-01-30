@@ -58,6 +58,7 @@ export const ShoppingCartContext = createContext(
           Items.splice(i, 1);
           /* Discernment cart Item count */
           setCartItemCount((cartStorage) => cartStorage -= 1)
+          getProductQuantity(product)
           window.alert(`${product.title} has been removed from your shopping cart`)
           // Update Total cost of all products
             getTotalCoast(product.id, product.price)
