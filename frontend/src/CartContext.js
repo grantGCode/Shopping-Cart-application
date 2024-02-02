@@ -35,20 +35,15 @@ export const ShoppingCartContext = createContext(
   
     }
 
+    // add one product to shoppig cart from productStore.js
+    const addOneToCart = () =>{
+      
+      const newProduct = products.map(product => {
+        return {id: product.id, quantity: 0}
+      })
+      
+      console.log(newProduct)  
     
-    const addOneToCart = (product) =>{
-      
-      // Adding 1 product{} to Items[]
-      Items.push(product);
-      getProductQuantity(product)
-      window.alert(`${product.title} has been added to your shopping cart.`)
-      console.log(Items)
-      
-      // Incrament cart Item count
-      setCartItemCount((cartStorage) => cartStorage += 1)
-      
-      // Update Total cost of all products
-      getTotalCoast(product.id, product.price)  
     };
     
     const removeOneItem = (product, ) => {
