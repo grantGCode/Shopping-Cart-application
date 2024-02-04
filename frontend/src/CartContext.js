@@ -14,35 +14,35 @@ export const ShoppingCartContext = createContext(
   });
   
   export const CartProvider = ({children}) => {
-    const [Items, setItems] = useState([]);
+    const [Items, setItems] = useState(null);
     const [CartItemCount, setCartItemCount] = useState(0);
     
     
-    
     const getProductQuantity = (product) => {
-      const idCount = {};
 
-      // Count occurrences of each id
-      for ( product of Items) {
-          const id = product.id;
-          idCount[id] = (idCount[id] || 0) + 1;
-      }
-  
-      // Print the count of each id to the console
-      for (const id in idCount) {
-          console.log(`ID ${id} appears ${idCount[id]} times in the array`);
-      }
-  
+      console.log(product.id)
+      
     }
 
     // add one product to shoppig cart from productStore.js
-    const addOneToCart = () =>{
+    const addOneToCart = (product) =>{
       
-      const newProduct = products.map(product => {
-        return {id: product.id, quantity: 0}
-      })
-      
-      console.log(newProduct)  
+      const newProduct = products.map(product => ({
+        id: product.id, 
+        quantity: 0
+        }))
+        for (let i = 0; i < products.length; i++) {
+        if(newProduct[i].id === products[i].id) {
+          newProduct[i].quantity += 1
+        } else if(newProduct[i].id === products[i].id){
+          window.alert(
+            `sorry this is emarising there not a product in our records with the name ${product.title}`
+            );
+        }}
+
+      // return setItems()
+      // getProductQuantity(newProduct)
+      return console.log(newProduct) 
     
     };
     
@@ -59,36 +59,37 @@ export const ShoppingCartContext = createContext(
           break;
         }else if (Items[i].id !== product.id) {
           console.log(`There appears is no ${product.title} in your cart.`)
-        }//else(Items.length === 0){
-          //   console.log("It appears your shopping cart is empty")
-          // }
+        }
     }
     console.log(Items)          
   }
   
   const deleteFromCart = () => {
     /* Purge Cart of All Items */
-    setItems([])
+    setItems(null)
     window.alert('All items have been removed from your shopping cart.')  
     
     /* Purge Item Count */  
-    setCartItemCount(0)
+
   }
   
   
   const getTotalCoast = () => {
 
-    let totalPrice = 0
-    for (let i = 0; i < Items.length; i++) {
-      totalPrice += Items[i].price;
-    }
-  
-    return console.log(`Total Price: $${totalPrice}`);
+
+    let totalPrice = Items.map(Items.price);
     
+    return console.log(`Total Price: $${totalPrice}`);
+  
   }
   
   
+  
+  
+  
   const CatFunctionsAndItems = {
+   
+   //functions
     getProductQuantity,
     addOneToCart,
     removeOneItem,
@@ -110,7 +111,6 @@ export const ShoppingCartContext = createContext(
   );
 
 };
-
 
 
 
