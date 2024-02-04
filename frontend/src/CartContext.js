@@ -25,26 +25,27 @@ export const ShoppingCartContext = createContext(
     }
 
     // add one product to shoppig cart from productStore.js
-    const addOneToCart = (product) =>{
+    const addOneToCart = (productId) =>{
       
       const newProduct = products.map(product => ({
         id: product.id, 
         quantity: 0
         }))
-        for (let i = 0; i < products.length; i++) {
-        if(newProduct[i].id === products[i].id) {
-          newProduct[i].quantity += 1
-        } else if(newProduct[i].id === products[i].id){
-          window.alert(
-            `sorry this is emarising there not a product in our records with the name ${product.title}`
-            );
-        }}
-
-      // return setItems()
-      // getProductQuantity(newProduct)
-      return console.log(newProduct) 
+        for (let i = 0; i < newProduct.length; i++) {
+        const Index = newProduct.map(product => product);
+        if(Index === productId.id) {
+          console.log("from line 39", Index)
+          newProduct[Index].quantity += 1
+        } else {
+          console.log("from line 41", Index)
+          // window.alert(
+          //   "sorry this product seems to not apear in our records."
+          //   );
+          }
+          return console.log('from line 46', Index, newProduct) 
+        }
+      };
     
-    };
     
     const removeOneItem = (product, ) => {
       //Remove one product{} from Items[]
