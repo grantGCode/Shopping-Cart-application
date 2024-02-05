@@ -28,26 +28,21 @@ export const ShoppingCartContext = createContext(
     const addOneToCart = (productId) =>{
       
       const newProduct = products.map(product => ({
-        id: product.id, 
+        id: product, 
         quantity: 0
         }));
-        // for (let i = 0; i < newProduct.length; i++) {
-        //   let prodId = i;
-        // const Index = newProduct.map(product => product);
-        // if(Index === productId.id) {
-        //   console.log("from line 39", Index)
-        //   newProduct[Index].quantity += 1
-        // } else {
-        //   console.log("from line 41", Index)
-        //   // window.alert(
-        //   //   "sorry this product seems to not apear in our records."
-        //   //   );
-        //   }
+        const productIndex = newProduct.findIndex(product => product.id === productId);
+        if(productIndex !== -1) {
+          console.log("from line 39", productIndex)
+          newProduct[productIndex].quantity += 1
+        } else {
+          console.log("from line 41", productIndex)
+          window.alert(
+            "sorry this product seems to not apear in our records."
+            );
+          }
           
-          console.log('from line 48', /*Index[prodId],*/ Items)
-      // };
-
-      return setItems(newProduct)
+      return console.log('from line 48', newProduct)
       
     };
     
