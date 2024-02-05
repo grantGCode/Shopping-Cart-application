@@ -14,7 +14,7 @@ export const ShoppingCartContext = createContext(
   });
   
   export const CartProvider = ({children}) => {
-    const [Items, setItems] = useState(null);
+    const [Items, setItems] = useState();
     const [CartItemCount, setCartItemCount] = useState(0);
     
     
@@ -30,40 +30,33 @@ export const ShoppingCartContext = createContext(
       const newProduct = products.map(product => ({
         id: product.id, 
         quantity: 0
-        }))
-        for (let i = 0; i < newProduct.length; i++) {
-        const Index = newProduct.map(product => product);
-        if(Index === productId.id) {
-          console.log("from line 39", Index)
-          newProduct[Index].quantity += 1
-        } else {
-          console.log("from line 41", Index)
-          // window.alert(
-          //   "sorry this product seems to not apear in our records."
-          //   );
-          }
-          return console.log('from line 46', Index, newProduct) 
-        }
-      };
+        }));
+        // for (let i = 0; i < newProduct.length; i++) {
+        //   let prodId = i;
+        // const Index = newProduct.map(product => product);
+        // if(Index === productId.id) {
+        //   console.log("from line 39", Index)
+        //   newProduct[Index].quantity += 1
+        // } else {
+        //   console.log("from line 41", Index)
+        //   // window.alert(
+        //   //   "sorry this product seems to not apear in our records."
+        //   //   );
+        //   }
+          
+          console.log('from line 48', /*Index[prodId],*/ Items)
+      // };
+
+      return setItems(newProduct)
+      
+    };
     
     
-    const removeOneItem = (product, ) => {
-      //Remove one product{} from Items[]
-      for (let i = 0; i < Items.length; i++) {
-        if (Items[i].id === product.id) {
-          Items.splice(i, 1);
-          /* Discernment cart Item count */
-          setCartItemCount((cartStorage) => cartStorage -= 1)
-          window.alert(`${product.title} has been removed from your shopping cart`)
-          // Update Total cost of all products
-            getTotalCoast(product.id, product.price)
-          break;
-        }else if (Items[i].id !== product.id) {
-          console.log(`There appears is no ${product.title} in your cart.`)
-        }
+    const removeOneItem = () => {
+      // this function will be calling getProductsData
+      getProductData(Items)
+      
     }
-    console.log(Items)          
-  }
   
   const deleteFromCart = () => {
     /* Purge Cart of All Items */
@@ -80,7 +73,7 @@ export const ShoppingCartContext = createContext(
 
     let totalPrice = Items.map(Items.price);
     
-    return console.log(`Total Price: $${totalPrice}`);
+    return console.log(Items);
   
   }
   
