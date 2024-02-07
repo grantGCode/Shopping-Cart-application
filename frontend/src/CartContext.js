@@ -14,7 +14,7 @@ export const ShoppingCartContext = createContext(
   });
   
   export const CartProvider = ({children}) => {
-    const [Items, setItems] = useState();
+    const [Items, setItems] = useState([]);
     const [CartItemCount, setCartItemCount] = useState(0);
     
     
@@ -29,12 +29,12 @@ export const ShoppingCartContext = createContext(
       
       const newProduct = products.map(product => ({
         id: product, 
-        quantity: 0
+        quantity: 1
         }));
         const productIndex = newProduct.findIndex(product => product.id === productId);
         if(productIndex !== -1) {
           console.log("from line 39", productIndex)
-          newProduct[productIndex].quantity += 1
+          newProduct[productIndex].quantity++
         } else {
           console.log("from line 41", productIndex)
           window.alert(
