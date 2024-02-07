@@ -25,24 +25,28 @@ export const ShoppingCartContext = createContext(
     }
 
     // add one product to shoppig cart from productStore.js
-    const addOneToCart = (productId) =>{
-      
-      const newProduct = products.map(product => ({
-        id: product, 
-        quantity: 1
+    const addOneToCart = (product) =>{
+
+      // If the products never was in the shoping cart
+      if (Items.length === 0) {
+        const newProduct = products.map(product => ({
+          id: product, 
+          quantity: 1
         }));
-        const productIndex = newProduct.findIndex(product => product.id === productId);
-        if(productIndex !== -1) {
-          console.log("from line 39", productIndex)
-          newProduct[productIndex].quantity++
-        } else {
-          console.log("from line 41", productIndex)
-          window.alert(
-            "sorry this product seems to not apear in our records."
-            );
-          }
+        setItems(newProduct)
+      };
+        // const productIndex = newProduct.findIndex(product => product.id === productId);
+        // if(productIndex !== -1) {
+        //   console.log("from line 39", productIndex)
+        //   newProduct[productIndex].quantity++
+        // } else {
+        //   console.log("from line 41", productIndex)
+        //   window.alert(
+        //     "sorry this product seems to not apear in our records."
+        //     );
+        //   }
           
-      return console.log('from line 48', newProduct)
+      return console.log('from line 48', Items)
       
     };
     
