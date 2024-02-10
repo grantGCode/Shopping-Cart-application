@@ -14,48 +14,49 @@ export const ShoppingCartContext = createContext(
   });
   
   export const CartProvider = ({children}) => {
-    const [Items, setItems] = useState([]);
+    const [Items, setItems] = useState([]); //Shopping cart
     const [CartItemCount, setCartItemCount] = useState(0);
     
     
-    const getProductQuantity = (product) => {
+    const getProductQuantity = (product, id) => {
 
       console.log(product.id)
       
     }
 
     // add one product to shoppig cart from productStore.js
-    const addOneToCart = (product) =>{
+    const addOneToCart = (product, id) =>{
+
 
       // If the products never was in the shoping cart
-      if (Items.length === 0) {
-        const newProduct = products.map(product => ({
-          id: product, 
-          quantity: 1
-        }));
-        setItems(newProduct)
-      };
-        // const productIndex = newProduct.findIndex(product => product.id === productId);
-        // if(productIndex !== -1) {
-        //   console.log("from line 39", productIndex)
-        //   newProduct[productIndex].quantity++
-        // } else {
-        //   console.log("from line 41", productIndex)
-        //   window.alert(
-        //     "sorry this product seems to not apear in our records."
-        //     );
-        //   }
+        if (Items.length === 0 ) {
+          setItems([{id: product.id, quantity: 1}])
+        };
+        
+        
+        // If the product is already in the shopping cart 
+        if(Items.length > 0) {
           
-      return console.log('from line 48', Items)
+          const newItems = Items.map((item) => {
+            if(item.id === product.id) {
+              return {
+                ...item,
+                quantity: item.quantity + 1
+              }
+            }
+            return item 
+          })
+          setItems(newItems)
+        }
+      };
       
-    };
-    
-    
-    const removeOneItem = () => {
-      // this function will be calling getProductsData
-      getProductData(Items)
       
-    }
+      const removeOneItem = () => {
+        // this function will be calling getProductsData
+        // getProductData(Items)
+        return console.log('from line 58', Items)
+        
+      }
   
   const deleteFromCart = () => {
     /* Purge Cart of All Items */
