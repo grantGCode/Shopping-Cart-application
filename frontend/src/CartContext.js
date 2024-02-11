@@ -25,34 +25,35 @@ export const ShoppingCartContext = createContext(
     }
 
     // add one product to shoppig cart from productStore.js
-    const addOneToCart = (product, id) =>{
-
+    const addOneToCart = (product) =>{
 
       // If the products never was in the shoping cart
-        if (Items.length === 0 ) {
-          setItems([{id: product.id, quantity: 1}])
-        };
-        
-        
-        // If the product is already in the shopping cart 
-        if(Items.length > 0) {
-          
-          const newItems = Items.map((item) => {
-            if(item.id === product.id) {
-              return {
-                ...item,
-                quantity: item.quantity + 1
-              }
-            }
-            if(item.id !== product.id){
-              console.log('Line 47 test')
-              return {id: product.id, quantity: 1}
-            }           
-            return item 
-          });
-          Items.push(...newItems);
-        }
+      if (Items.length === 0 ) {
+        setItems([{id: product.id, quantity: 1}])
       };
+        
+      // If the product is already in the shopping cart 
+      if(Items.length > 0) {
+      
+        const newItems = Items.map((item) => {
+          // If product being added is already in the shopping cart
+          if(item.id === product.id) {
+            return {
+              ...item,
+              quantity: item.quantity + 1
+            }
+          }
+            return item
+        });
+
+        // If product being added is not already in the shopping cart
+        if(!newItems.some((item) => 
+        item.id === product.id)){
+          newItems.push({id: product.id, quantity: 1})
+        };           
+        setItems(newItems)
+      };
+    };
       
       
       const removeOneItem = () => {
