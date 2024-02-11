@@ -43,10 +43,13 @@ export const ShoppingCartContext = createContext(
                 ...item,
                 quantity: item.quantity + 1
               }
-            }
+            }else if(item.id !== product.id){
+              console.log('Line 47 test')
+              Items.push({id: product.id, quantity: 1})
+            }           
             return item 
-          })
-          setItems(newItems)
+          });
+          setItems(newItems);
         }
       };
       
