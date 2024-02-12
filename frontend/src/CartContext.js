@@ -18,9 +18,10 @@ export const ShoppingCartContext = createContext(
     const [CartItemCount, setCartItemCount] = useState(0);
     
     
-    const getProductQuantity = (product, id) => {
+    const getProductQuantity = (product) => {
 
-      console.log(product.id)
+      const getQuantity = Items.find(item => {console.log(` QTY of: ${item.quantity} `)})
+      return getQuantity
       
     }
 
@@ -52,6 +53,7 @@ export const ShoppingCartContext = createContext(
           newItems.push({id: product.id, quantity: 1})
         };           
         setItems(newItems)
+        getProductQuantity()
       };
     };
       
