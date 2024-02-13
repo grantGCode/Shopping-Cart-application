@@ -53,28 +53,46 @@ export const ShoppingCartContext = createContext(
           newItems.push({id: product.id, quantity: 1})
         };           
         setItems(newItems)
-        getProductQuantity()
       };
     };
       
+    // remove one product from shoppig cart
+    const removeOneItem = (product) => {
+        
+        
+      if(Items.length > 0){
+
+        const itemQuantity = Items.map(item => {
+          
+          if(item.quantity > 0 && item.id === product.id){
+            return {
+              ...item,
+              quantity: item.quantity - 1
+            }
+          }else{
+
+          }
+
+          if(item.quantity = 1 && item.id === product.id){
+            return {
+              // splice(item)
+            }
+        }
+          
+        })  
+        
+
+     };
+
+    };
       
-      const removeOneItem = () => {
-        // this function will be calling getProductsData
-        // getProductData(Items)
+      const deleteFromCart = () => {
+      
         return console.log('from line 58', Items)
         
       }
-  
-  const deleteFromCart = () => {
-    /* Purge Cart of All Items */
-    setItems(null)
-    window.alert('All items have been removed from your shopping cart.')  
-    
-    /* Purge Item Count */  
-
-  }
-  
-  
+      
+      
   const getTotalCoast = () => {
 
 
