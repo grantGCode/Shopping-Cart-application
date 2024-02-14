@@ -59,26 +59,29 @@ export const ShoppingCartContext = createContext(
     // remove one product from shoppig cart
     const removeOneItem = (product) => {
 
-      if(Items.length > 1){
+      
 
-        const reduceItemQuantity = Items.map(item => {
+      const reduceItemQuantity = Items.map(item => {
             
-          //If said product is in shopping cart more than x1
-          if(item.quantity > 1 && item.id === product.id){
-            return {
-              ...item,
-              quantity: item.quantity - 1
-            }, console.log('Test line 69', item)
-          };
+        //If said product is in shopping cart more than x1
+        if(Items.length > 1 ||
+           item.quantity > 1 && 
+           item.id === product.id){
+          return {
+            ...item,
+            quantity: item.quantity - 1
+          }, console.log('Test line 69', item)
+        };
           return item    
-        });
+      });
           
-          setItems(reduceItemQuantity)
+        setItems(reduceItemQuantity)
           
-          //If there is just only 1 of said product in the cart
-      }else if(Items.some((item) => item.quantity = 1 && item.id === product.id)){
-        const filteredItems = Items.filter(filteredItem => filteredItem.id !== product.id);
-        return setItems(filteredItems)
+        //If there is just only 1 of said product in the cart
+      if(Items.some((item) => item.quantity = 1 && 
+          item.id === product.id)){
+            const filteredItems = Items.filter(filteredItem => filteredItem.id !== product.id);
+            return setItems(filteredItems),console.log('Test Line 84')
 
         //If said product is not in the shopping cart   
       }else{
