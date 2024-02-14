@@ -63,28 +63,26 @@ export const ShoppingCartContext = createContext(
 
         const reduceItemQuantity = Items.map(item => {
             
-          //If said product is in shopping cart
+          //If said product is in shopping cart more than x1
           if(item.quantity > 1 && item.id === product.id){
             return {
               ...item,
               quantity: item.quantity - 1
             }, console.log('Test line 69', item)
-            
-          //If said product is not in the shopping cart   
-          }else{
-            window.alert(`Sorry it appears ${product.title} is not in your cart.`)
-          }
-
-          return item
-
+          };
+          return item    
         });
-
-        setItems(reduceItemQuantity)
-        
-        //If there is just only 1 of said product in the cart
+          
+          setItems(reduceItemQuantity)
+          
+          //If there is just only 1 of said product in the cart
       }else if(Items.some((item) => item.quantity = 1 && item.id === product.id)){
         const filteredItems = Items.filter(filteredItem => filteredItem.id !== product.id);
         return setItems(filteredItems)
+
+        //If said product is not in the shopping cart   
+      }else{
+        window.alert(`Sorry it appears ${product.title} is not in your cart.`)
       }
     };
 
