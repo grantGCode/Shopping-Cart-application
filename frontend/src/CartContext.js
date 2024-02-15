@@ -42,7 +42,7 @@ export const ShoppingCartContext = createContext(
             return {
               ...item,
               quantity: item.quantity + 1
-            }
+            }, console.log('test')
           }
             return item
         });
@@ -57,52 +57,44 @@ export const ShoppingCartContext = createContext(
     };
       
     // remove one product from shoppig cart
-    const removeOneItem = (product) => {
+    const removeOneItem = (id) => {
 
-      
 
-      const reduceItemQuantity = Items.map(item => {
-            
-        //If said product is in shopping cart more than x1
-        if(Items.length > 1 ||
-           item.quantity > 1 && 
-           item.id === product.id){
-          return {
-            ...item,
-            quantity: item.quantity - 1
-          }, console.log('Test line 69', item)
-        };
-          return item    
-      });
-          
-        setItems(reduceItemQuantity)
-          
-        //If there is just only 1 of said product in the cart
-      if(Items.some((item) => item.quantity = 1 && 
-          item.id === product.id)){
-            const filteredItems = Items.filter(filteredItem => filteredItem.id !== product.id);
-            return setItems(filteredItems),console.log('Test Line 84')
-
-        //If said product is not in the shopping cart   
-      }else{
-        window.alert(`Sorry it appears ${product.title} is not in your cart.`)
-      }
+      setItems(
+        // check quantity of existing product
+         Items.map(item => {
+          if(item.id === id){
+            return{...item, quantity:item.quantity - 1}
+          }else{
+            return item
+          }
+        //if quantity is = 1 delete from cart
+        
+        //else use setter and update object in state array by decrementing by 1
+      })
+      );
     };
 
-      
+      //Use this will server as a temporry place to log Items to the console
       const deleteFromCart = () => {
       
         return console.log('from line 88', Items)
+        getTotalCoast()
         
       }
       
       
-  const getTotalCoast = () => {
+  const getTotalCoast = (product) => {
 
 
-    let totalPrice = Items.map(Items.price);
+    // let totalPrice = Items.map((itme) => {
+    //   if(item.id === product.id) {
+
+    //     console.log(product.price)
+    //   }
+    // });
     
-    return console.log(Items);
+    // return console.log(Items);
   
   }
   
