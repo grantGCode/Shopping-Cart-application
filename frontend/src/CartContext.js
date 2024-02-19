@@ -6,6 +6,7 @@ import { products, getProductData } from "./productStore";
 export const ShoppingCartContext = createContext(
   { 
     items: [],
+    showInsideCart: () => {},
     getProductQuantity: () => {},
     addOneToCart: () => {},
     removeOneItem: () => {},
@@ -20,8 +21,9 @@ export const ShoppingCartContext = createContext(
     
     const getProductQuantity = (product) => {
 
-      const getQuantity = Items.find(item => {console.log(` QTY of: ${item.quantity} `)})
-      return getQuantity
+      const getQuantity = Items.find(item => item.quantity)
+      
+      return getQuantity.quantity
       
     }
 
@@ -42,12 +44,13 @@ export const ShoppingCartContext = createContext(
             return {
               ...item,
               quantity: item.quantity + 1
-            }, console.log('test')
+            }
+             
           }
             return item
         });
 
-        // If product being added is not already in the shopping cart
+        // If another product being added is not already in the shopping cart
         if(!newItems.some((item) => 
         item.id === product.id)){
           newItems.push({id: product.id, quantity: 1})
@@ -57,31 +60,35 @@ export const ShoppingCartContext = createContext(
     };
       
     // remove one product from shoppig cart
-    const removeOneItem = (id) => {
-
-
-      setItems(
-        // check quantity of existing product
-         Items.map(item => {
-          if(item.id === id){
-            return{...item, quantity:item.quantity - 1}
-          }else{
-            return item
-          }
-        //if quantity is = 1 delete from cart
-        
-        //else use setter and update object in state array by decrementing by 1
-      })
+    const removeOneItem = (product) => {
+      
+     // check quantity of existing product
+      const currentQuantity = getProductQuantity(product)
+      
+      // if quantity is = 1 delete from cart
+      Items.map(item => {
+        if(currentQuantity === 1){
+          deleteFromCart(item)
+          // else use setter and update object in state array by decrementing by 1
+        }else{
+          setItems(      
+            item.id === product.id
+            ?
+            {...item, quantity:item.quantity -= 1}
+            : item
+          )
+        }
+      })    
+    };    
+    
+    //remove a product from the shoping cart
+    const deleteFromCart = (product) => {
+      setItems( Items.filter(disgardedItem => {
+          return disgardedItem.id !== product.id
+        })
       );
     };
-
-      //Use this will server as a temporry place to log Items to the console
-      const deleteFromCart = () => {
-      
-        return console.log('from line 88', Items)
-        getTotalCoast()
-        
-      }
+    
       
       
   const getTotalCoast = (product) => {
@@ -97,6 +104,9 @@ export const ShoppingCartContext = createContext(
     // return console.log(Items);
   
   }
+
+  //For debuging (will return Items to console for to debug)
+  const showInsideCart = () => {console.log(Items)}
   
   
   
@@ -105,6 +115,7 @@ export const ShoppingCartContext = createContext(
   const CatFunctionsAndItems = {
    
    //functions
+   showInsideCart,
     getProductQuantity,
     addOneToCart,
     removeOneItem,

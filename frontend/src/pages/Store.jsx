@@ -8,7 +8,7 @@ import { useShoppingCartContext } from '../CartContext.js'
 
 function Store() {
   
-  const { CartItemCount, deleteFromCart} = useShoppingCartContext();
+  const { CartItemCount, showInsideCart, deleteFromCart} = useShoppingCartContext();
 
   
 
@@ -36,7 +36,7 @@ function Store() {
           <div className='buttons'>
             <Button
               variant="danger" 
-              onClick={deleteFromCart}
+              onClick={showInsideCart} // will return Items to console for to debug
             >Remove All From Cart
             </Button>
           </div>
