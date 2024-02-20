@@ -93,24 +93,20 @@ export const ShoppingCartContext = createContext(
       
   const getTotalCoast = () => {
 
+    
     const totalPrice = Items.map(item => {
       
+      const productRefData = getProductData(item.id)
+      
       //Rechive all price refences from the productStore products array & Id's associated. 
-      const refOfProductPrise = products.map(product => {
-        return product.price
-      });
-
-      if(item.id === products.id)
-     return console.log('test')
-    
-  })
-
-
-  return console.log(products.id)
-
         
-  
+        if(item.id === productRefData.id){
+        
+          return item.id * productRefData.price
+        }
+    })
   }
+  
 
   //For debuging (will return Items to console for to debug)
   const showInsideCart = () => {getTotalCoast()}
