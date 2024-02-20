@@ -8,7 +8,7 @@ import { useShoppingCartContext } from '../CartContext.js'
 
 function Store() {
   
-  const { CartItemCount, showInsideCart, deleteFromCart} = useShoppingCartContext();
+  const { CartItemCount, showInsideCart} = useShoppingCartContext();
 
   
 

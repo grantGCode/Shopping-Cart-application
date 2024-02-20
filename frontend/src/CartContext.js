@@ -91,22 +91,29 @@ export const ShoppingCartContext = createContext(
     
       
       
-  const getTotalCoast = (product) => {
+  const getTotalCoast = () => {
 
+    const totalPrice = Items.map(item => {
+      
+      //Rechive all price refences from the productStore products array & Id's associated. 
+      const refOfProductPrise = products.map(product => {
+        return product.price
+      });
 
-    // let totalPrice = Items.map((itme) => {
-    //   if(item.id === product.id) {
-
-    //     console.log(product.price)
-    //   }
-    // });
+      if(item.id === products.id)
+     return console.log('test')
     
-    // return console.log(Items);
+  })
+
+
+  return console.log(products.id)
+
+        
   
   }
 
   //For debuging (will return Items to console for to debug)
-  const showInsideCart = () => {console.log(Items)}
+  const showInsideCart = () => {getTotalCoast()}
   
   
   
@@ -115,7 +122,7 @@ export const ShoppingCartContext = createContext(
   const CatFunctionsAndItems = {
    
    //functions
-   showInsideCart,
+    showInsideCart,
     getProductQuantity,
     addOneToCart,
     removeOneItem,
