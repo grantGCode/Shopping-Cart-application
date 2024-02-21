@@ -16,7 +16,8 @@ export const ShoppingCartContext = createContext(
   
   export const CartProvider = ({children}) => {
     const [Items, setItems] = useState([]); //Shopping cart
-    const [CartItemCount, setCartItemCount] = useState(0);
+    //displayed count of total products in the cart on Stor.jsx
+    const [cartItemCount, setCartItemCount] = useState(0);  
     
     
     const getProductQuantity = (product) => {
@@ -57,7 +58,9 @@ export const ShoppingCartContext = createContext(
         };           
         setItems(newItems)
       };
+      updateProductInCartCount()
     };
+    
       
     // remove one product from shoppig cart
     const removeOneItem = (product) => {
@@ -78,7 +81,8 @@ export const ShoppingCartContext = createContext(
             : item
           )
         }
-      })    
+      })   
+      updateProductInCartCount() 
     };    
     
     //remove a product from the shoping cart
@@ -109,10 +113,31 @@ export const ShoppingCartContext = createContext(
   }
   
 
+  const updateProductInCartCount = () => {
+
+    
+    // if(Items.length === 0){
+      
+      const getQuantity = Items.map(item => {
+        let numberOfAllInCart = 0
+        
+        //Keep the displayed number of Items above -1
+        if(Items.length < 0){
+          return setCartItemCount(0)
+
+          // add or subtract number of Items in cart
+        }else{
+          numberOfAllInCart += (item.quantity * Items.length)
+          return setCartItemCount(numberOfAllInCart)
+        }
+        
+    })
+      
+  }
+  
+  
   //For debuging (will return Items to console for to debug)
-  const showInsideCart = () => {getTotalCoast()}
-  
-  
+  const showInsideCart = () => {console.log(Items, cartItemCount)}
   
   
   
@@ -127,7 +152,7 @@ export const ShoppingCartContext = createContext(
     getTotalCoast,
     setCartItemCount,
     
-    CartItemCount,  
+    cartItemCount,  
     Items,
     
   }
