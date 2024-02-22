@@ -15,20 +15,21 @@ export const ShoppingCartContext = createContext(
   });
   
   export const CartProvider = ({children}) => {
-    const [Items, setItems] = useState([]); //Shopping cart
-    //displayed count of total products in the cart on Stor.jsx
+      //Shopping cart
+    const [Items, setItems] = useState([]); 
+    
+    
+      //displayed count of total products in the cart on Stor.jsx
     const [cartItemCount, setCartItemCount] = useState(0);  
     
-    
-    const getProductQuantity = (product) => {
+    const getProductQuantity = (quantity) => { 
+      //Line above Passing in param of the quantity of specific single product in cart 
 
-      const getQuantity = Items.find(item => item.quantity)
-      
-      return getQuantity.quantity
-      
+      const getQuantity = Items.find((item) => item.quantity === quantity)
+      return getQuantity.quantity  
     }
 
-    // add one product to shoppig cart from productStore.js
+      // add one product to shoppig cart from productStore.js
     const addOneToCart = (product) =>{
 
       // If the products never was in the shoping cart
@@ -45,8 +46,7 @@ export const ShoppingCartContext = createContext(
             return {
               ...item,
               quantity: item.quantity + 1
-            }
-             
+            }             
           }
             return item
         });
@@ -58,7 +58,7 @@ export const ShoppingCartContext = createContext(
         };           
         setItems(newItems)
       };
-      updateProductInCartCount()
+      // updateProductInCartCount()
     };
     
       
@@ -66,13 +66,13 @@ export const ShoppingCartContext = createContext(
     const removeOneItem = (product) => {
       
      // check quantity of existing product
-      const currentQuantity = getProductQuantity(product)
-      
-      // if quantity is = 1 delete from cart
-      Items.map(item => {
+      Items.map((item) => {
+        const currentQuantity = getProductQuantity(item.quantity)
+
+        // if quantity is = 1 delete from cart
         if(currentQuantity === 1){
           deleteFromCart(item)
-          // else use setter and update object in state array by decrementing by 1
+          // Use setter & update object in state array by -= by 1
         }else{
           setItems(      
             item.id === product.id
@@ -82,12 +82,14 @@ export const ShoppingCartContext = createContext(
           )
         }
       })   
-      updateProductInCartCount() 
+      updateProductInCartCount(false) 
     };    
     
+
     //remove a product from the shoping cart
     const deleteFromCart = (product) => {
-      setItems( Items.filter(disgardedItem => {
+
+      setItems(Items.filter(disgardedItem => {    
           return disgardedItem.id !== product.id
         })
       );
@@ -110,34 +112,42 @@ export const ShoppingCartContext = createContext(
         }
       })
       return console.log(costOfAll)
-  }
+    }
   
-
-  const updateProductInCartCount = () => {
-
+    /* Work in progress */
     
-    // if(Items.length === 0){
-      
-      const getQuantity = Items.map(item => {
-        let numberOfAllInCart = 0
+    // Usde to display number of items in cart on the Store.jsx UI
+    const updateProductInCartCount = () => {  
         
-        //Keep the displayed number of Items above -1
-        if(Items.length < 0){
-          return setCartItemCount(0)
+        const getQuantity = Items.map((item) => {
+          let numberOfAllInCart = 0
+          
+          //Keep the displayed number of Items above -1
+          if(Items.length < 0){
+            
+            return setCartItemCount(0)
+            // add or subtract number of Items in cart
+          }else{
+            numberOfAllInCart += (item.quantity * Items.length)
+            return setCartItemCount(numberOfAllInCart)
+          }
+          
+      })      
+    }
+  
+  /* not added to Remove all from cart button
+  to debub with showInsideCart()*/
 
-          // add or subtract number of Items in cart
-        }else{
-          numberOfAllInCart += (item.quantity * Items.length)
-          return setCartItemCount(numberOfAllInCart)
-        }
-        
-    })
-      
+  //Delete all products in cart 
+  const purgeShoppingCart = () => {
+    
+    return setItems([]),
+    setCartItemCount(0)  
   }
   
-  
+
   //For debuging (will return Items to console for to debug)
-  const showInsideCart = () => {console.log(Items, cartItemCount)}
+  const showInsideCart = () => {console.log(Items)}
   
   
   
