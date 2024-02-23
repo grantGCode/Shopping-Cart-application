@@ -29,7 +29,8 @@ export const ShoppingCartContext = createContext(
       return getQuantity.quantity  
     }
 
-      // add one product to shoppig cart from productStore.js
+    
+    // add one product to shoppig cart from productStore.js
     const addOneToCart = (product) =>{
 
       // If the products never was in the shoping cart
@@ -58,7 +59,7 @@ export const ShoppingCartContext = createContext(
         };           
         setItems(newItems)
       };
-      // updateProductInCartCount()
+      updateProductInCartCount(true)
     };
     
       
@@ -117,23 +118,16 @@ export const ShoppingCartContext = createContext(
     /* Work in progress */
     
     // Usde to display number of items in cart on the Store.jsx UI
-    const updateProductInCartCount = () => {  
-        
-        const getQuantity = Items.map((item) => {
-          let numberOfAllInCart = 0
-          
-          //Keep the displayed number of Items above -1
-          if(Items.length < 0){
-            
-            return setCartItemCount(0)
-            // add or subtract number of Items in cart
-          }else{
-            numberOfAllInCart += (item.quantity * Items.length)
-            return setCartItemCount(numberOfAllInCart)
-          }
-          
-      })      
-    }
+    const updateProductInCartCount = (bool) => {  
+
+      //if addOneToCart() is called
+      if(bool === true){
+        setCartItemCount((prevCount) => prevCount + 1);
+        //if removeOneFromCart() is called & cartItemCount is above -1
+      }else if(bool === false && cartItemCount >= 0){
+        setCartItemCount((prevCount) => prevCount - 1);
+      };            
+    };
   
   /* not added to Remove all from cart button
   to debub with showInsideCart()*/
