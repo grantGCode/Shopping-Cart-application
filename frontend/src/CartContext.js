@@ -72,13 +72,13 @@ export const ShoppingCartContext = createContext(
 
         // if quantity is = 1 delete from cart
         if(currentQuantity === 1){
-          deleteFromCart(item)
-          // Use setter & update object in state array by -= by 1
-        }else{
-          setItems(      
-            item.id === product.id
-            ?
-            {...item, quantity:item.quantity -= 1}
+          return deleteFromCart(item)        
+        // Use setter & update object in state array by -= by 1
+        }else if(currentQuantity > 1){
+          return setItems(      
+          item.id === product.id
+          ?
+          [{...item, quantity: item.quantity -= 1}]
             : item
           )
         }
