@@ -124,9 +124,13 @@ export const ShoppingCartContext = createContext(
       if(bool === true){
         setCartItemCount((prevCount) => prevCount + 1);
         //if removeOneFromCart() is called & cartItemCount is above -1
-      }else if(bool === false && cartItemCount >= 0){
+      }else if(bool === false){
         setCartItemCount((prevCount) => prevCount - 1);
       };            
+
+      if(bool === false && cartItemCount === 0){
+        return setCartItemCount(0)
+      }
     };
   
   /* not added to Remove all from cart button
