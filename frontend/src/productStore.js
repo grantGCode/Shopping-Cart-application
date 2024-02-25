@@ -16,7 +16,7 @@ export const getProductData = (id) => {
     return undefined
    } else {
       // return(productData)
-      console.log('Line 18 productStore.js', productData) 
+      return productData 
    }  
 }
 

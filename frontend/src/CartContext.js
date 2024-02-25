@@ -6,6 +6,7 @@ import { products, getProductData } from "./productStore";
 export const ShoppingCartContext = createContext(
   { 
     items: [],
+    showInsideCart: () => {},
     getProductQuantity: () => {},
     addOneToCart: () => {},
     removeOneItem: () => {},
@@ -14,87 +15,144 @@ export const ShoppingCartContext = createContext(
   });
   
   export const CartProvider = ({children}) => {
-    const [Items, setItems] = useState([]);
-    const [CartItemCount, setCartItemCount] = useState(0);
+      //Shopping cart
+    const [Items, setItems] = useState([]); 
     
     
+      //displayed count of total products in the cart on Stor.jsx
+    const [cartItemCount, setCartItemCount] = useState(0);  
     
-    const getProductQuantity = (product) => {
-      const idCount = {};
+    const getProductQuantity = (quantity) => { 
+      //Line above Passing in param of the quantity of specific single product in cart 
 
-      // Count occurrences of each id
-      for ( product of Items) {
-          const id = product.id;
-          idCount[id] = (idCount[id] || 0) + 1;
-      }
-  
-      // Print the count of each id to the console
-      for (const id in idCount) {
-          console.log(`ID ${id} appears ${idCount[id]} times in the array`);
-      }
-  
+      const getQuantity = Items.find((item) => item.quantity === quantity)
+      return getQuantity.quantity  
     }
 
     
+    // add one product to shoppig cart from productStore.js
     const addOneToCart = (product) =>{
+
+      // If the products never was in the shoping cart
+      if (Items.length === 0 ) {
+        setItems([{id: product.id, quantity: 1}])
+      };
+        
+      // If the product is already in the shopping cart 
+      if(Items.length > 0) {
       
-      // Adding 1 product{} to Items[]
-      Items.push(product);
-      getProductQuantity(product)
-      window.alert(`${product.title} has been added to your shopping cart.`)
-      console.log(Items)
-      
-      // Incrament cart Item count
-      setCartItemCount((cartStorage) => cartStorage += 1)
-      
-      // Update Total cost of all products
-      getTotalCoast(product.id, product.price)  
+        const newItems = Items.map((item) => {
+          // If product being added is already in the shopping cart
+          if(item.id === product.id) {
+            return {
+              ...item,
+              quantity: item.quantity + 1
+            }             
+          }
+            return item
+        });
+
+        // If another product being added is not already in the shopping cart
+        if(!newItems.some((item) => 
+        item.id === product.id)){
+          newItems.push({id: product.id, quantity: 1})
+        };           
+        setItems(newItems)
+      };
+      updateProductInCartCount(true)
     };
     
-    const removeOneItem = (product, ) => {
-      //Remove one product{} from Items[]
-      for (let i = 0; i < Items.length; i++) {
-        if (Items[i].id === product.id) {
-          Items.splice(i, 1);
-          /* Discernment cart Item count */
-          setCartItemCount((cartStorage) => cartStorage -= 1)
-          getProductQuantity(product)
-          window.alert(`${product.title} has been removed from your shopping cart`)
-          // Update Total cost of all products
-            getTotalCoast(product.id, product.price)
-          break;
-        }else if (Items[i].id !== product.id) {
-          console.log(`There appears is no ${product.title} in your cart.`)
-        }//else(Items.length === 0){
-          //   console.log("It appears your shopping cart is empty")
-          // }
-    }
-    console.log(Items)          
-  }
-  
-  const deleteFromCart = () => {
-    /* Purge Cart of All Items */
-    setItems([])
-    window.alert('All items have been removed from your shopping cart.')  
-    
-    /* Purge Item Count */  
-    setCartItemCount(0)
-  }
-  
-  
-  const getTotalCoast = () => {
+      
+    // remove one product from shoppig cart
+    const removeOneItem = (product) => {
+      
+     // check quantity of existing product
+      Items.map((item) => {
+        const currentQuantity = getProductQuantity(item.quantity)
 
-    let totalPrice = 0
-    for (let i = 0; i < Items.length; i++) {
-      totalPrice += Items[i].price;
+        // if quantity is = 1 delete from cart
+        if(currentQuantity === 1){
+          return deleteFromCart(item)        
+        // Use setter & update object in state array by -= by 1
+        }else if(currentQuantity > 1){
+          return setItems(      
+          item.id === product.id
+          ?
+          [{...item, quantity: item.quantity -= 1}]
+            : item
+          )
+        }
+      })   
+      updateProductInCartCount(false) 
+    };    
+    
+
+    //remove a product from the shoping cart
+    const deleteFromCart = (product) => {
+
+      setItems(Items.filter(disgardedItem => {    
+          return disgardedItem.id !== product.id
+        })
+      );
+    };
+    
+      
+      
+  const getTotalCoast = () => {
+    
+    let costOfAll = 0
+    
+    const totalPrice = Items.map(item => {   
+      
+      //Rechive all price refences from the productStore products array. 
+      const productRefData = getProductData(item.id)
+      
+        if(item.id === productRefData.id){
+          costOfAll += (item.quantity * productRefData.price) 
+          return costOfAll
+        }
+      })
+      return console.log(costOfAll)
     }
   
-    return console.log(`Total Price: $${totalPrice}`);
+    /* Work in progress */
     
+    // Usde to display number of items in cart on the Store.jsx UI
+    const updateProductInCartCount = (bool) => {  
+
+      //if addOneToCart() is called
+      if(bool === true){
+        setCartItemCount((prevCount) => prevCount + 1);
+        //if removeOneFromCart() is called & cartItemCount is above -1
+      }else if(bool === false){
+        setCartItemCount((prevCount) => prevCount - 1);
+      };            
+
+      if(bool === false && cartItemCount === 0){
+        return setCartItemCount(0)
+      }
+    };
+  
+  /* not added to Remove all from cart button
+  to debub with showInsideCart()*/
+
+  //Delete all products in cart 
+  const purgeShoppingCart = () => {
+    
+    return setItems([]),
+    setCartItemCount(0)  
   }
+  
+
+  //For debuging (will return Items to console for to debug)
+  const showInsideCart = () => {console.log(Items)}
+  
   
   
   const CatFunctionsAndItems = {
+   
+   //functions
+    showInsideCart,
     getProductQuantity,
     addOneToCart,
     removeOneItem,
@@ -102,7 +160,7 @@ export const ShoppingCartContext = createContext(
     getTotalCoast,
     setCartItemCount,
     
-    CartItemCount,  
+    cartItemCount,  
     Items,
     
   }
@@ -116,7 +174,6 @@ export const ShoppingCartContext = createContext(
   );
 
 };
-
 
 
 
