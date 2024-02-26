@@ -13,11 +13,10 @@ import { useShoppingCartContext } from '../CartContext';
 export default function NavBar() {
   
   const [show, setShow] = useState(false);
-  const [Total, SetTotal] = useState('Total $',0.00)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true)
   
-  const {cartItemCount } = useShoppingCartContext()
+  const {cartItemCount, getTotalCost} = useShoppingCartContext()
 
 
   return (
@@ -48,14 +47,16 @@ export default function NavBar() {
                     <Button type='button' className='Close-Modal' onClick={handleClose}>X</Button>
                   </Modal.Header>
                 </div>  
+                  {/* {Body to displays of current products inside Cart} */}
                 <div className='body'>
                 <Modal.Body >
                   <p>There are no items in your shopping cart at this time.</p>
+                  <h2 className='Total'>Total: {getTotalCost}</h2>
                 </Modal.Body>
                 </div>
+
                 <div className='footer'>
                   <Modal.Footer>
-                    <div className='Total'>{Total}</div>
                   </Modal.Footer>
                 </div>
 
