@@ -1,7 +1,9 @@
 import {useState} from 'react'
-import {Button, Container, Navbar, Modal, Image} from 'react-bootstrap'
+import {Container, Navbar, Modal, Image} from 'react-bootstrap'
+import Button from 'react-bootstrap/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import { useShoppingCartContext } from '../CartContext';
 
 
 
@@ -15,6 +17,7 @@ export default function NavBar() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true)
   
+  const {cartItemCount } = useShoppingCartContext()
 
 
   return (
@@ -27,11 +30,11 @@ export default function NavBar() {
               <h2 className='S' >S</h2>
               <h2 className='Shopper'> Shopper</h2> 
              </div>
-             <Button className= 'Check-Out-Button' type='button' onClick={handleShow}>
+             <Button variant='primary' className= 'Check-Out-Button' type='button' onClick={handleShow}>
                 <div className='icon'>
-            <FontAwesomeIcon icon={faCartShopping} /> 
-                </div>
-                <p className='text'>Check Out</p> 
+                  <FontAwesomeIcon icon={faCartShopping} /> 
+                </div> 
+                <p>Your Cart Has: {cartItemCount} Items</p>
               </Button>
           </div>
 
