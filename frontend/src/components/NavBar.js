@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { useShoppingCartContext } from '../CartContext';
+import ItemCard from './ItemCard'
 
 
 
@@ -16,7 +17,7 @@ export default function NavBar() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true)
   
-  const {cartItemCount, getTotalCost} = useShoppingCartContext()
+  const {cartItemCount, Items, getTotalCost} = useShoppingCartContext()
 
 
   return (
@@ -47,19 +48,17 @@ export default function NavBar() {
                     <Button type='button' className='Close-Modal' onClick={handleClose}>X</Button>
                   </Modal.Header>
                 </div>  
-                  {/* {Body to displays of current products inside Cart} */}
+                   
                 <div className='body'>
-                <Modal.Body >
-                  <p>There are no items in your shopping cart at this time.</p>
-                  <h2 className='Total'>Total: {getTotalCost}</h2>
-                </Modal.Body>
+                  <Modal.Body >
+                    {Items.length === 0 ? (
+                      <p>There are no items in your shopping cart at this time.</p>
+                      ) : (
+                        <ItemCard />                  
+                    )}
+                    <h2 className='Total'>Total: {getTotalCost}</h2>
+                  </Modal.Body>
                 </div>
-
-                <div className='footer'>
-                  <Modal.Footer>
-                  </Modal.Footer>
-                </div>
-
             </Modal>
           </div>
         </Container>  
