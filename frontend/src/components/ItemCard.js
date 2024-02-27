@@ -1,10 +1,10 @@
 import {Card, Form, Row, Col, Button} from 'react-bootstrap'
-import { useShoppingCartContext } from '../CartContext'
+import { useShoppingCartContext, ShoppingCartContext } from '../CartContext'
 import {products, getProductData} from '../productStore'
 import {useContext} from "react"
 
 function ItemCard({products}) {
-// const itemData = useContext(ShoppingCartContext);
+const itemData = useContext(ShoppingCartContext);
 const {getProductQuantity, removeOneItem} = useShoppingCartContext()
 
 
@@ -18,9 +18,9 @@ return(
             <h3>{getProductData()}</h3>
             <h3>{getProductQuantity}</h3>
             <Button
-                // variant="primary" 
-                // size="lg"
-                // onClick={() => {cart.removeOneItem(products)}}
+                variant="primary" 
+                size="lg"
+                onClick={() => {itemData.removeOneItem(products)}}
             >
                 - Remove From Cart
             </Button>
