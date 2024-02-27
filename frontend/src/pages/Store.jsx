@@ -26,6 +26,7 @@ function Store() {
                       class="border border-primary"
                       key={products.id}
                       products={product}
+                      
                     />  
                   </Col>
                 ))
