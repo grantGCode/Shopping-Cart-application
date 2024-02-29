@@ -8,7 +8,7 @@ import { useShoppingCartContext } from '../CartContext.js'
 
 function Store() {
   
-  const { cartItemCount, showInsideCart} = useShoppingCartContext();
+  const { showInsideCart, getTotalCost} = useShoppingCartContext();
 
   
 
@@ -26,17 +26,17 @@ function Store() {
                       class="border border-primary"
                       key={products.id}
                       products={product}
+                      
                     />  
                   </Col>
                 ))
               }
             </Row>
         <Form>
-          <h2>Your Cart Has: {cartItemCount} Items</h2>
           <div className='buttons'>
             <Button
               variant="danger" 
-              onClick={showInsideCart} // will return Items to console for to debug
+              onClick={getTotalCost} // will return Items to console for to debug
             >Remove All From Cart
             </Button>
           </div>

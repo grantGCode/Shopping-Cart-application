@@ -1,20 +1,19 @@
 import {useState} from 'react'
-import {Button, Container, Navbar, Modal, Image} from 'react-bootstrap'
+import {Container, Navbar, Modal, Image, Col, Button} from 'react-bootstrap'
+// import Button from 'react-bootstrap/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
-
-
-
-
+import { useShoppingCartContext } from '../CartContext';
+import ItemCard from './ItemCard'
 
 
 export default function NavBar() {
   
   const [show, setShow] = useState(false);
-  const [Total, SetTotal] = useState('Total $',0.00)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true)
   
+  const {cartItemCount, Items, getTotalCost} = useShoppingCartContext()
 
 
   return (
@@ -27,11 +26,15 @@ export default function NavBar() {
               <h2 className='S' >S</h2>
               <h2 className='Shopper'> Shopper</h2> 
              </div>
-             <Button className= 'Check-Out-Button' type='button' onClick={handleShow}>
+             <Button 
+              variant='outline-primary' 
+              className= 'Check-Out-Button' 
+              type='button' 
+              onClick={handleShow}>
                 <div className='icon'>
-            <FontAwesomeIcon icon={faCartShopping} /> 
-                </div>
-                <p className='text'>Check Out</p> 
+                  <FontAwesomeIcon icon={faCartShopping} /> 
+                </div> 
+                <p>Your Cart Has: {cartItemCount} Items</p>
               </Button>
           </div>
 
@@ -45,17 +48,34 @@ export default function NavBar() {
                     <Button type='button' className='Close-Modal' onClick={handleClose}>X</Button>
                   </Modal.Header>
                 </div>  
+                   
                 <div className='body'>
-                <Modal.Body >
-                  <p>There are no items in your shopping cart at this time.</p>
-                </Modal.Body>
+                  <Modal.Body >
+                    {Items.length === 0 ? (
+                      <p>There are no items in your shopping cart at this time.</p>
+                      ) : 
+                        Items.map((item) => 
+                          (
+                            <Col align='center' > 
+                              <ItemCard                   
+                                class="border border-primary"
+                                key={Items.id}
+                                item={item}
+                              />  
+                            </Col>
+                          ))
+                        }
+                    <h2 className='Total'>Total: {getTotalCost}</h2>
+                    <Button 
+                      className='btn mt-2'
+                     variant='outline-primary'
+                      onClick={() =>
+                        {window.alert(`Thank you for your purchase! 😀`)}
+                      }
+                    >Purchase Items
+                    </Button>
+                  </Modal.Body>
                 </div>
-                <div className='footer'>
-                  <Modal.Footer>
-                    <div className='Total'>{Total}</div>
-                  </Modal.Footer>
-                </div>
-
             </Modal>
           </div>
         </Container>  
