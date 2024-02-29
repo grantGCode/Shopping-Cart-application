@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {Container, Navbar, Modal, Image} from 'react-bootstrap'
+import {Container, Navbar, Modal, Image, Col} from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
@@ -53,9 +53,19 @@ export default function NavBar() {
                   <Modal.Body >
                     {Items.length === 0 ? (
                       <p>There are no items in your shopping cart at this time.</p>
-                      ) : (
-                        <ItemCard />                  
-                    )}
+                      ) : 
+                        Items.map((item) => 
+                          (
+                            <Col align='center' > 
+                              <ItemCard                   
+                                class="border border-primary"
+                                key={Items.id}
+                                Items={item}
+                                
+                              />  
+                            </Col>
+                          ))
+                        }
                     <h2 className='Total'>Total: {getTotalCost}</h2>
                   </Modal.Body>
                 </div>

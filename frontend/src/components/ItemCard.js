@@ -25,7 +25,11 @@ return(
                     >
                         - Remove From Cart
                     </Button>
-                    <Button onClick={() =>{console.log(itemQuant.quantity)}}>Testing/Debuging</Button>
+                    {/*for debubing*/}
+                    <Button 
+                        onClick={() =>{console.log(itemQuant.quantity)}}
+                    >Testing/Debuging
+                    </Button> 
                 </Col>
             </Row>
         </Card.Body>
