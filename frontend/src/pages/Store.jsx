@@ -18,7 +18,11 @@ function Store() {
             <Row
               xs={1} 
               md={3} 
+              
             >
+              <Col 
+                className="justify-content-center"
+              >
               {products.map((product) => 
                 (
                   <Col align='center' > 
@@ -31,16 +35,19 @@ function Store() {
                   </Col>
                 ))
               }
+              </Col>
             </Row>
-        <Form>
-          <div className='buttons'>
-            <Button
-              variant="danger" 
-              onClick={getTotalCost} // will return Items to console for to debug
-            >Remove All From Cart
-            </Button>
-          </div>
-        </Form>
+        <Row className="mt-4">
+          <Col className="mx-4">
+            <Form>
+                <Button
+                  variant="danger" 
+                  onClick={getTotalCost} // will return Items to console for to debug
+                >Remove All From Cart
+                </Button>
+            </Form>
+          </Col>
+        </Row>
     </div>
   )
 }

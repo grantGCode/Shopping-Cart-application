@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {Container, Navbar, Modal, Image, Col, Button} from 'react-bootstrap'
+import {Container, Navbar, Modal, Image, Col, Row, Button} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { useShoppingCartContext } from '../CartContext';
@@ -19,25 +19,27 @@ export default function NavBar() {
     <div> 
     <Navbar className='nav'>
         <Container>
-          <div className='closed-nav-bar'>
-            <Col className='Brand-Name'>{/*Place Holder Website Name */}
-              <h2 className='U'>U</h2>
-              <h2 className='S' >S</h2>
-              <h2 className='Shopper'> Shopper</h2> 
-            </Col>
-            <Col>
-              <Button  
-                  size='sm'
-                  variant='outline-primary' 
-                  className= 'Check-Out-Button' 
-                  type='button' 
-                  onClick={handleShow}
-                >
-                  <FontAwesomeIcon icon={faCartShopping} /> 
-                  <p>Your Cart Has: {cartItemCount} Items</p>
-                </Button>
+          {/* <div className='closed-nav-bar'> */}
+            <Row className="w-100">
+              <Col className='Brand-Name' >{/*Place Holder Website Name */}
+                <h2 className='U'>U</h2>
+                <h2 className='S' >S</h2>
+                <h2 className='Shopper'> Shopper</h2> 
               </Col>
-          </div>
+              <Col className="d-flex justify-content-end">
+                <Button  
+                    size='sm'
+                    variant='outline-primary' 
+                    className= 'Check-Out-Button' 
+                    type='button' 
+                    onClick={handleShow}
+                  >
+                    <FontAwesomeIcon icon={faCartShopping} /> 
+                    <p>Your Cart Has: {cartItemCount} Items</p>
+                  </Button>
+                </Col>
+              </Row>
+          {/* </div> */}
 
           
           <div className='display-modal'>

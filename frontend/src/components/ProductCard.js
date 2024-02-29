@@ -13,10 +13,10 @@ function ProductCard({products}) {
     <Form>
         <Card>
             <Card.Body>
-              <Row xs={1} md={3}>
+              {/* <Row xs={1} md={3} > */}
                 <Col>
-                  <p>{products.title}</p>
-                  <p>{`$${products.price}`}</p>    
+                  <h3>{products.title}</h3>
+                  <h3>{`$${products.price}`}</h3>    
                   {' '}
                   <Button
                     variant="secondary" 
@@ -34,7 +34,7 @@ function ProductCard({products}) {
                     - Remove From Cart
                   </Button>
                 </Col>
-              </Row>
+              {/* </Row> */}
             </Card.Body>
         </Card>
     </Form>
