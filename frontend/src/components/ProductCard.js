@@ -19,16 +19,16 @@ function ProductCard({products}) {
                   <p>{`$${products.price}`}</p>    
                   {' '}
                   <Button
-                    variant="primary" 
-                    size="lg" 
+                    variant="secondary" 
+                    size="sm" 
                     onClick={() => {cart.addOneToCart(products)}}
                   >
                    + Add To Cart
                   </Button>
                     {' '}
                   <Button
-                    variant="primary" 
-                    size="lg"
+                    variant="secondary" 
+                    size="sm"
                     onClick={() => {cart.removeOneItem(products)}}
                   >
                     - Remove From Cart

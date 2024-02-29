@@ -17,8 +17,8 @@ return(
                     <h3>{prodRef.title}</h3>
                     <h3>{`x${item.quantity}`}</h3>
                     <Button
-                        variant="primary" 
-                        size="lg"
+                        variant="secondary" 
+                        size="sm"
                         onClick={() => {itemData.removeOneItem(products)}}
                     >
                         - Remove From Cart
