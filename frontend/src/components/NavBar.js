@@ -1,6 +1,6 @@
 import {useState} from 'react'
-import {Container, Navbar, Modal, Image, Col} from 'react-bootstrap'
-import Button from 'react-bootstrap/Button'
+import {Container, Navbar, Modal, Image, Col, Button} from 'react-bootstrap'
+// import Button from 'react-bootstrap/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { useShoppingCartContext } from '../CartContext';
@@ -26,7 +26,11 @@ export default function NavBar() {
               <h2 className='S' >S</h2>
               <h2 className='Shopper'> Shopper</h2> 
              </div>
-             <Button variant='primary' className= 'Check-Out-Button' type='button' onClick={handleShow}>
+             <Button 
+              variant='outline-primary' 
+              className= 'Check-Out-Button' 
+              type='button' 
+              onClick={handleShow}>
                 <div className='icon'>
                   <FontAwesomeIcon icon={faCartShopping} /> 
                 </div> 
@@ -56,13 +60,15 @@ export default function NavBar() {
                               <ItemCard                   
                                 class="border border-primary"
                                 key={Items.id}
-                                Items={item}
+                                item={item}
                               />  
                             </Col>
                           ))
                         }
                     <h2 className='Total'>Total: {getTotalCost}</h2>
                     <Button 
+                      className='btn mt-2'
+                     variant='outline-primary'
                       onClick={() =>
                         {window.alert(`Thank you for your purchase! 😀`)}
                       }

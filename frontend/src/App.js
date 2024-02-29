@@ -1,4 +1,5 @@
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Cancel from './pages/Cancel.jsx'
 import Store from './pages/Store.jsx'
 import Success from './pages/Success.jsx'
