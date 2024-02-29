@@ -7,10 +7,6 @@ import { useShoppingCartContext } from '../CartContext';
 import ItemCard from './ItemCard'
 
 
-
-
-
-
 export default function NavBar() {
   
   const [show, setShow] = useState(false);
@@ -61,12 +57,17 @@ export default function NavBar() {
                                 class="border border-primary"
                                 key={Items.id}
                                 Items={item}
-                                
                               />  
                             </Col>
                           ))
                         }
                     <h2 className='Total'>Total: {getTotalCost}</h2>
+                    <Button 
+                      onClick={() =>
+                        {window.alert(`Thank you for your purchase! 😀`)}
+                      }
+                    >Purchase Items
+                    </Button>
                   </Modal.Body>
                 </div>
             </Modal>
