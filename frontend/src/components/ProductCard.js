@@ -25,7 +25,7 @@ function ProductCard({products}) {
           </Col>    
         </Row>
         <Row className='d-flex justify-content-between align-items-center'>  
-        <Col class='d-flex justify-content-Start'>
+          <Col class='d-flex justify-content-Start'>
             <Image 
               src='/images/imageShritTwo.jpg'
               alt='image unavalible'
@@ -33,32 +33,32 @@ function ProductCard({products}) {
             />
           </Col>
           <Col class='d-flex justify-content-End'>
-            <Col>
-              <h1>{`$${products.price}`}</h1>    
-            </Col>
-            <Col class='py-5'>
-              <Button
-                variant="secondary" 
-                size="lm" 
-                onClick={() => {cart.addOneToCart(products)}}
-              >
-                + Add To Cart
-              </Button>
-            </Col>
-            <Col>
-              <Button
-                variant="secondary" 
-                size="lm"
-                onClick={() => {cart.removeOneItem(products)}}
-              >
-                - Remove From Cart
-              </Button>
-            </Col>
-          </Col>                            
-        </Row>
-      </Card.Body>
-    </Card>
-  </Form>
+              <Col>
+                <h1>{`$${products.price}`}</h1>    
+              </Col>
+              <Col  className='my-5'>
+                <Button
+                  variant="secondary" 
+                  size="lg" 
+                  onClick={() => {cart.addOneToCart(products)}}
+                >
+                  + Add To Cart
+                </Button>
+              </Col>
+              <Col>
+                <Button
+                  variant="secondary" 
+                  size="lg"
+                  onClick={() => {cart.removeOneItem(products)}}
+                >
+                  - Remove From Cart
+                </Button>
+              </Col>
+            </Col>                            
+          </Row>
+        </Card.Body>
+      </Card>
+    </Form>
   )
 }
 
