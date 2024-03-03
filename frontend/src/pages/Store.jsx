@@ -41,6 +41,7 @@ function Store() {
           <Col className="mx-4">
             <Form>
                 <Button
+                  size='lg'
                   variant="danger" 
                   onClick={getTotalCost} // will return Items to console for to debug
                 >Remove All From Cart

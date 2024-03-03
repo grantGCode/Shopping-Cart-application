@@ -17,29 +17,31 @@ export default function NavBar() {
 
   return (
     <div> 
-    <Navbar className='nav'>
+    <Navbar className='Nav-BG'>{/*Nav*/}
         <Container>
-          {/* <div className='closed-nav-bar'> */}
             <Row className="w-100">
-              <Col className='Brand-Name' >{/*Place Holder Website Name */}
-                <h2 className='U'>U</h2>
-                <h2 className='S' >S</h2>
-                <h2 className='Shopper'> Shopper</h2> 
+              <Col className='Brand-Name'>{/*Place Holder Website Name */}
+                <h1 className='Title-U'>U</h1>
+                <h1 className='Title-S'>S</h1> 
+                <h1 className='Title-Shopper'>Shopper</h1> 
               </Col>
               <Col className="d-flex justify-content-end">
                 <Button  
-                    size='sm'
-                    variant='outline-primary' 
-                    className= 'Check-Out-Button' 
+                    size='lg'
+                    variant='primary' 
+                    className= 'Check-Out-Button'
                     type='button' 
                     onClick={handleShow}
                   >
-                    <FontAwesomeIcon icon={faCartShopping} /> 
-                    <p>Your Cart Has: {cartItemCount} Items</p>
+                    <p class='my-0 mx-0'>
+                      <FontAwesomeIcon icon={faCartShopping} /> Your Cart Has:
+                    </p> 
+                    <p class='my-0 mx-0'>
+                      {cartItemCount} Items
+                    </p>
                   </Button>
                 </Col>
               </Row>
-          {/* </div> */}
 
           
           <div className='display-modal'>

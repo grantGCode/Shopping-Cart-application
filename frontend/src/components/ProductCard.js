@@ -1,43 +1,64 @@
-import { Card, Button, Form, Row, Col, Stack } from 'react-bootstrap';
-import { products, getProductData} from '../productStore.js'
+import { Card, Button, Form, Row, Col, Image} from 'react-bootstrap';
 import { ShoppingCartContext } from '../CartContext.js'
 import { useContext } from 'react';
+// import imageShrit from './assets/imageShrit.jpg'
 
 function ProductCard({products}) {
   const cart = useContext(ShoppingCartContext);
 
-  
-
-
   return (
     <Form>
-        <Card>
-            <Card.Body>
-              {/* <Row xs={1} md={3} > */}
-                <Col>
-                  <h3>{products.title}</h3>
-                  <h3>{`$${products.price}`}</h3>    
-                  {' '}
-                  <Button
-                    variant="secondary" 
-                    size="sm" 
-                    onClick={() => {cart.addOneToCart(products)}}
-                  >
-                   + Add To Cart
-                  </Button>
-                    {' '}
-                  <Button
-                    variant="secondary" 
-                    size="sm"
-                    onClick={() => {cart.removeOneItem(products)}}
-                  >
-                    - Remove From Cart
-                  </Button>
-                </Col>
-              {/* </Row> */}
-            </Card.Body>
-        </Card>
-    </Form>
+     <Card>
+      <Card.Body class='px-0 my=5'>
+        <Row 
+          className='d-flex justify-content-between align-items-center'
+        >
+          <Col>
+            <h1>{products.title}</h1>
+          </Col>
+          <Col xs={6} md={6}>
+            <Image 
+              src='/images/imageShrit.jpg'
+              alt='image unavalible'
+              className='img-thumbnail'
+            />
+          </Col>    
+        </Row>
+        <Row className='d-flex justify-content-between align-items-center'>  
+        <Col class='d-flex justify-content-Start'>
+            <Image 
+              src='/images/imageShritTwo.jpg'
+              alt='image unavalible'
+              className='img-thumbnail '
+            />
+          </Col>
+          <Col class='d-flex justify-content-End'>
+            <Col>
+              <h1>{`$${products.price}`}</h1>    
+            </Col>
+            <Col class='py-5'>
+              <Button
+                variant="secondary" 
+                size="lm" 
+                onClick={() => {cart.addOneToCart(products)}}
+              >
+                + Add To Cart
+              </Button>
+            </Col>
+            <Col>
+              <Button
+                variant="secondary" 
+                size="lm"
+                onClick={() => {cart.removeOneItem(products)}}
+              >
+                - Remove From Cart
+              </Button>
+            </Col>
+          </Col>                            
+        </Row>
+      </Card.Body>
+    </Card>
+  </Form>
   )
 }
 

@@ -24,3 +24,22 @@ code {
 .Brand-Name .Shopper {
   padding-left: 1rem;
 }
+
+.Nav-BG {
+  background-color: #E0E0E0
+}
+
+
+.Title-U {
+  color: red;
+}
+
+.Title-S{
+  color: white;
+}
+
+.Title-Shopper {
+  display: flex;
+  padding-left: 1rem;
+  color: navy;
+}
