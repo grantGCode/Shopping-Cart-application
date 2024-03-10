@@ -15,8 +15,17 @@ export default function NavBar() {
   const {cartItemCount, Items, getTotalCost} = useShoppingCartContext()
 
   const buyCartContent = async()=>{
-    console.log(Items);
+    await fetch({
+      method: "POST",
+      headers: {
+        'Content-Type': 'application'
+      },
+      body: JSON.stringify(Items)
+    }).then((response) => {
+      console.log(response)
+    })
   }
+  
 
   return (
     <div> 
