@@ -14,6 +14,9 @@ export default function NavBar() {
   
   const {cartItemCount, Items, getTotalCost} = useShoppingCartContext()
 
+  const buyCartContent = async()=>{
+    console.log(Items);
+  }
 
   return (
     <div> 
@@ -80,9 +83,7 @@ export default function NavBar() {
                     <Button 
                       className='btn mt-2'
                       variant='success'
-                      onClick={() =>
-                        {window.alert(`Thank you for your purchase! 😀`)}
-                      }
+                      onClick={buyCartContent}
                     >Purchase Items
                     </Button>
                   </Modal.Body>
