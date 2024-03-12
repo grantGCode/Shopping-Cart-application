@@ -8,9 +8,14 @@ const stripe = require('stripe')('pk_test_51OqfYeDvSYddFJCDEAJJwjLZAkUUYeKLQnSdh
 // app.use(cors());
 // app.use(express.static('public'));
 app.use(express.json());
+app.use(express.urlencoded({extended: false}))
 
 app.get('/', (req, res) => {
   res.send('Successful response.');
+});
+
+app.post('/', (req, res) => {
+  res.send(req.body);
 });
 
 app.listen(5000, () => console.log('Example app is listening on port 5000.'))
