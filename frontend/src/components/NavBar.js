@@ -14,17 +14,32 @@ export default function NavBar() {
   
   const {cartItemCount, Items, getTotalCost} = useShoppingCartContext()
 
-  const buyCartContent = async()=>{
-    await fetch({
-      method: "POST",
-      headers: {
-        'Content-Type': 'application'
-      },
-      body: JSON.stringify(Items)
-    }).then((response) => {
-      console.log(response)
-    })
-  }
+  const buyCartContent = async () => {
+    try {
+      const response = await fetch('http://localhost:5000', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json' // Fix: Correct content type
+        },
+        body: JSON.stringify({ name: 'Bentley' })
+      });
+  
+      if (response.ok) {
+        // Assuming the server responds with a JSON object containing a 'url' property
+        const responseData = await response.json();
+  
+        if (responseData.url) {
+          window.location.assign(responseData.url);
+        }
+      } else {
+        console.error('Failed to fetch:', response.status, response.statusText);
+        // Handle error as needed
+      }
+    } catch (error) {
+      console.error('An unexpected error occurred:', error);
+      // Handle error as needed
+    }
+  };
   
 
   return (
