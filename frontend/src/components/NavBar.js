@@ -19,25 +19,25 @@ export default function NavBar() {
       const response = await fetch('http://localhost:5000', {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json' // Fix: Correct content type
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name: 'Bentley' })
+        body: JSON.stringify({Items: Items })
       });
   
+      //redirect after responce
       if (response.ok) {
-        // Assuming the server responds with a JSON object containing a 'url' property
-        const responseData = await response.json();
+      const responseData = await response.json();
   
         if (responseData.url) {
           window.location.assign(responseData.url);
         }
       } else {
-        console.error('Failed to fetch:', response.status, response.statusText);
-        // Handle error as needed
+        console.error('Failed to fetch:', response.status, response.statusText); 
       }
+      
+      //If const responce should fail.
     } catch (error) {
       console.error('An unexpected error occurred:', error);
-      // Handle error as needed
     }
   };
   
