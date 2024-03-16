@@ -35,7 +35,8 @@ export const ShoppingCartContext = createContext(
 
       // If the products never was in the shoping cart
       if (Items.length === 0 ) {
-        setItems([{id: product.id, quantity: 1}])
+        // price = product id for Stripes requirements
+        setItems([{price: product.id, quantity: 1}])
       };
         
       // If the product is already in the shopping cart 
@@ -55,7 +56,8 @@ export const ShoppingCartContext = createContext(
         // If another product being added is not already in the shopping cart
         if(!newItems.some((item) => 
         item.id === product.id)){
-          newItems.push({id: product.id, quantity: 1})
+          // price = product id for Stripes requirements
+          newItems.push({price: product.id, quantity: 1})
         };           
         setItems(newItems)
       };
