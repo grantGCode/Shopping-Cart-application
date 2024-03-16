@@ -15,7 +15,6 @@ export const getProductData = (id) => {
     console.log(`There is no product for this ID: ${id}`)
     return undefined
    } else {
-      // return(productData)
       return productData 
    }  
 }
