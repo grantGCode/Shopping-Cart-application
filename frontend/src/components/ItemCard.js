@@ -1,12 +1,12 @@
 import {Card, Form, Row, Col, Button} from 'react-bootstrap'
-import { useShoppingCartContext, ShoppingCartContext } from '../CartContext'
+import {ShoppingCartContext} from '../CartContext'
 import {products, getProductData} from '../productStore'
 import {useContext} from "react"
 
 function ItemCard({item}) {
 const itemData = useContext(ShoppingCartContext);
 
-const prodRef = getProductData(item.id)
+const prodRef = getProductData(item.price)
 
 return(
 <Form>
