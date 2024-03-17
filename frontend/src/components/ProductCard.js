@@ -1,7 +1,7 @@
 import { Card, Button, Form, Row, Col, Image} from 'react-bootstrap';
 import { ShoppingCartContext } from '../CartContext.js'
 import { useContext } from 'react';
-// import imageShrit from './assets/imageShrit.jpg'
+
 
 function ProductCard({products}) {
   const cart = useContext(ShoppingCartContext);
