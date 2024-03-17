@@ -12,7 +12,7 @@ app.use(express.urlencoded({extended: false}))
 
 
 app.post('/', (req, res) => {
-  console.log('Recived data:', req.body);
+  console.log('Received data:', req.body);
   res.send(req.body);
 });
 
