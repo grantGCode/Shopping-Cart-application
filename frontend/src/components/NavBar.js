@@ -24,7 +24,7 @@ export default function NavBar() {
         body: JSON.stringify({Items: Items })
       });
   
-      //redirect after responce
+      //redirect after response
       if (response.ok) {
       const responseData = await response.json();
   
@@ -35,7 +35,7 @@ export default function NavBar() {
         console.error('Failed to fetch:', response.status, response.statusText); 
       }
       
-      //If const responce should fail.
+      //If const response should fail.
     } catch (error) {
       console.error('An unexpected error occurred:', error);
     }
@@ -97,7 +97,7 @@ export default function NavBar() {
                             <Col align='center' > 
                               <ItemCard                   
                                 class="border border-primary"
-                                key={Items.id}
+                                key={Items.price}
                                 item={item}
                               />  
                             </Col>
