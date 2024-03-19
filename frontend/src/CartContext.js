@@ -11,7 +11,8 @@ export const ShoppingCartContext = createContext(
     addOneToCart: () => {},
     removeOneItem: () => {},
     deleteFromCart: () => {},
-    getTotalCost: () => {}
+    getTotalCost: () => {},
+    purgeShoppingCart: () => {}
   });
   
   export const CartProvider = ({children}) => {
@@ -30,12 +31,12 @@ export const ShoppingCartContext = createContext(
     }
 
     
-    // add one product to shoppig cart from productStore.js
+    // add one product to shopping cart from productStore.js
     const addOneToCart = (product) =>{
 
-      // If the products never was in the shoping cart
+      // If the products never was in the shopping cart
       if (Items.length === 0 ) {
-        // price = product id for Stripes requirements
+        // price = product id for Stripe's format.
         setItems([{price: product.id, quantity: 1}])
       };
         
@@ -44,7 +45,7 @@ export const ShoppingCartContext = createContext(
       
         const newItems = Items.map((item) => {
           // If product being added is already in the shopping cart
-          if(item.id === product.id) {
+          if(item.price === product.id) {
             return {
               ...item,
               quantity: item.quantity + 1
@@ -55,7 +56,7 @@ export const ShoppingCartContext = createContext(
 
         // If another product being added is not already in the shopping cart
         if(!newItems.some((item) => 
-        item.id === product.id)){
+        item.price === product.id)){
           // price = product id for Stripes requirements
           newItems.push({price: product.id, quantity: 1})
         };           
@@ -65,20 +66,20 @@ export const ShoppingCartContext = createContext(
     };
     
       
-    // remove one product from shoppig cart
+    // remove one product from shopping cart
     const removeOneItem = (product) => {
-      
+
      // check quantity of existing product
       Items.map((item) => {
         const currentQuantity = getProductQuantity(item.quantity)
 
         // if quantity is = 1 delete from cart
         if(currentQuantity === 1){
-          return deleteFromCart(item)        
+          return deleteFromCart(item)
         // Use setter & update object in state array by -= by 1
         }else if(currentQuantity > 1){
           return setItems(      
-          item.id === product.id
+          item.price === product.id
           ?
           [{...item, quantity: item.quantity -= 1}]
             : item
@@ -86,15 +87,20 @@ export const ShoppingCartContext = createContext(
         }
       })   
       updateProductInCartCount(false) 
+      console.log(Items)
     };    
     
 
-    //remove a product from the shoping cart
+    //remove a product from the shopping cart
     const deleteFromCart = (product) => {
 
-      setItems(Items.filter(disgardedItem => {    
-          return disgardedItem.id !== product.id
-        })
+      setItems(Items.filter(item => {    
+        if (Items.length === 1){
+          return setItems([]) 
+        } else if(Items.length > 1 &&
+            item.price !== product.id){ 
+            return item 
+        }})
       );
     };
     
@@ -106,10 +112,10 @@ export const ShoppingCartContext = createContext(
       const totalPrice = Items.map(item => {   
         
         let costOfAll = 0
-        //Rechive all price refences from the productStore products array. 
-        const productRefData = getProductData(item.id)
+        //Recive all price references from the productStore products array. 
+        const productRefData = getProductData(item.price)
         
-        if(item.id === productRefData.id){
+        if(item.price === productRefData.id){
           costOfAll += (item.quantity * productRefData.price) 
           return costOfAll
         }
@@ -119,7 +125,7 @@ export const ShoppingCartContext = createContext(
   
     /* Work in progress */
     
-    // Usde to display number of items in cart on the Store.jsx UI
+    // Used to display number of items in cart on the Store.jsx UI
     const updateProductInCartCount = (bool) => {  
 
       //if addOneToCart() is called
@@ -136,7 +142,7 @@ export const ShoppingCartContext = createContext(
     };
   
   /* not added to Remove all from cart button
-  to debub with showInsideCart()*/
+  to debug with showInsideCart()*/
 
   //Delete all products in cart 
   const purgeShoppingCart = () => {
@@ -146,7 +152,7 @@ export const ShoppingCartContext = createContext(
   }
   
 
-  //For debuging (will return Items to console for to debug)
+  //For debugging (will return Items to console for to debug)
   const showInsideCart = () => {console.log(Items)}
   
   
@@ -161,6 +167,7 @@ export const ShoppingCartContext = createContext(
     deleteFromCart,
     getTotalCoast,
     setCartItemCount,
+    purgeShoppingCart,
     
     cartItemCount,  
     Items,
