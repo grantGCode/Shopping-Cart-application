@@ -74,7 +74,7 @@ export const ShoppingCartContext = createContext(
         const currentQuantity = getProductQuantity(item.quantity)
 
         // if quantity is = 1 delete from cart
-        if(currentQuantity === 1){
+        if(currentQuantity === 1 && item.price === product.id){
           return deleteFromCart(item)
         // Use setter & update object in state array by -= by 1
         }else if(currentQuantity > 1){
@@ -87,21 +87,21 @@ export const ShoppingCartContext = createContext(
         }
       })   
       updateProductInCartCount(false) 
-      console.log(Items)
     };    
     
 
     //remove a product from the shopping cart
-    const deleteFromCart = (product) => {
-
-      setItems(Items.filter(item => {    
+    const deleteFromCart = (itemToDelete) => {
+      setItems(Items.filter(item => { 
         if (Items.length === 1){
-          return setItems([]) 
-        } else if(Items.length > 1 &&
-            item.price !== product.id){ 
-            return item 
+          return [] 
+        } else if(Items.length > 1 &&  
+          item.price !== itemToDelete.price)
+          { 
+            return  item.price !== itemToDelete.price
         }})
       );
+      console.log(Items)
     };
     
       

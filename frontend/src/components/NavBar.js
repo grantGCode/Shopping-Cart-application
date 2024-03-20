@@ -91,17 +91,16 @@ export default function NavBar() {
                   <Modal.Body >
                     {Items && Items.length === 0 ? (
                       <p>There are no items in your shopping cart at this time.</p>
-                      ) : <p>Test</p>
-                        // Items && Items.map((item) => 
-                        //   (
-                        //     <Col align='center' > 
-                        //       <ItemCard                   
-                        //         class="border border-primary"
-                        //         key={item.price}
-                        //         item={item}
-                        //       />  
-                        //     </Col>
-                          // ))
+                      ) : Items && Items.map((item) => 
+                          (
+                            <Col align='center' > 
+                              <ItemCard                   
+                                class="border border-primary"
+                                key={item.price}
+                                item={item}
+                              />  
+                            </Col>
+                          ))
                         }
                     <h2 className='Total'>Total: {getTotalCost}</h2>
                     <Button 
