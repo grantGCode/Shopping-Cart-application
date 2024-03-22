@@ -11,9 +11,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 
 
-app.post('/', (req, res) => {
-  console.log('Received data:', req.body);
-  res.send(req.body);
+app.post('/', async (req, res) => {
+  const session = await stripe.checkout.session.create({
+    line_item: [Items],
+    mode: 'payment',
+    // success_url:
+    // cancel_url:
+  })
 });
 
 app.listen(5000, () => console.log('app is listening on port 5000.'))
