@@ -21,7 +21,7 @@ export default function NavBar() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({Items: Items })
+        body: JSON.stringify({items: Items })
       });
   
       //redirect after response

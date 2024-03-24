@@ -3,7 +3,7 @@ import {ShoppingCartContext} from '../CartContext'
 import {products, getProductData} from '../productStore'
 import {useContext} from "react"
 
-function ItemCard({item}) {
+function ItemCard({item}, {products}) {
 const itemData = useContext(ShoppingCartContext);
 
 const prodRef = getProductData(item.price)
