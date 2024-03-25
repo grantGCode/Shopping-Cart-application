@@ -1,12 +1,9 @@
 import { createContext, useContext, useState } from "react";
 import { products, getProductData } from "./productStore";
 
-
-
 export const ShoppingCartContext = createContext(
   { 
     items: [],
-    showInsideCart: () => {},
     getProductQuantity: () => {},
     addOneToCart: () => {},
     removeOneItem: () => {},
@@ -16,11 +13,10 @@ export const ShoppingCartContext = createContext(
   });
   
   export const CartProvider = ({children}) => {
-      //Shopping cart
+    //Shopping cart
     const [Items, setItems] = useState([]); 
-    
-    
-      //displayed count of total products in the cart on Stor.jsx
+        
+    //displayed count of total products in the cart on Stor.jsx
     const [cartItemCount, setCartItemCount] = useState(0);  
     
     const getProductQuantity = (quantity) => { 
@@ -30,14 +26,13 @@ export const ShoppingCartContext = createContext(
       return getQuantity.quantity  
     }
 
-    
     // add one product to shopping cart from productStore.js
     const addOneToCart = (product) =>{
 
       // If the products never was in the shopping cart
       if (Items.length === 0 ) {
         // price = product id for Stripe's format.
-        setItems([{price: product.id, quantity: 1}])
+        setItems([{price: product.price, quantity: 1}])
       };
         
       // If the product is already in the shopping cart 
@@ -45,7 +40,7 @@ export const ShoppingCartContext = createContext(
       
         const newItems = Items.map((item) => {
           // If product being added is already in the shopping cart
-          if(item.price === product.id) {
+          if(item.price === product.price) {
             return {
               ...item,
               quantity: item.quantity + 1
@@ -56,15 +51,14 @@ export const ShoppingCartContext = createContext(
 
         // If another product being added is not already in the shopping cart
         if(!newItems.some((item) => 
-        item.price === product.id)){
+        item.price === product.price)){
           // price = product id for Stripes requirements
-          newItems.push({price: product.id, quantity: 1})
+          newItems.push({price: product.price, quantity: 1})
         };           
         setItems(newItems)
       };
       updateProductInCartCount(true)
     };
-    
       
     // remove one product from shopping cart
     const removeOneItem = (product) => {
@@ -74,12 +68,12 @@ export const ShoppingCartContext = createContext(
         const currentQuantity = getProductQuantity(item.quantity)
 
         // if quantity is = 1 delete from cart
-        if(currentQuantity === 1 && item.price === product.id){
+        if(currentQuantity === 1 && item.price === product.price){
           return deleteFromCart(item)
         // Use setter & update object in state array by -= by 1
         }else if(currentQuantity > 1){
           return setItems(      
-          item.price === product.id
+          item.price === product.price
           ?
           [{...item, quantity: item.quantity -= 1}]
             : item
@@ -89,7 +83,6 @@ export const ShoppingCartContext = createContext(
       updateProductInCartCount(false) 
     };    
     
-
     //remove a product from the shopping cart
     const deleteFromCart = (itemToDelete) => {
       setItems(Items.filter(item => { 
@@ -101,29 +94,19 @@ export const ShoppingCartContext = createContext(
             return  item.price !== itemToDelete.price
         }})
       );
-      console.log(Items)
     };
-    
       
-      
-    const getTotalCoast = () => {
-      
-      
+    const getTotalCost = () => {
+      let costOfItems = 0
       const totalPrice = Items.map(item => {   
-        
-        let costOfAll = 0
-        //Recive all price references from the productStore products array. 
-        const productRefData = getProductData(item.price)
-        
-        if(item.price === productRefData.id){
-          costOfAll += (item.quantity * productRefData.price) 
-          return costOfAll
+        if(item.price === products.price){
+          costOfItems = (item.quantity * getProductData(item.price).cost)
+          return costOfItems
+        }else if(costOfItems <= 0){
+          return '0.00'
         }
       })
-      return console.log(totalPrice)
-    }
-  
-    /* Work in progress */
+    };  
     
     // Used to display number of items in cart on the Store.jsx UI
     const updateProductInCartCount = (bool) => {  
@@ -140,53 +123,40 @@ export const ShoppingCartContext = createContext(
         return setCartItemCount(0)
       }
     };
-  
-  /* not added to Remove all from cart button
-  to debug with showInsideCart()*/
 
-  //Delete all products in cart 
-  const purgeShoppingCart = () => {
+    //Delete all products in cart 
+    const purgeShoppingCart = () => {
+      
+      return setItems([]),
+      setCartItemCount(0)  
+    }
+  
+    const CatFunctionsAndItems = {
     
-    return setItems([]),
-    setCartItemCount(0)  
-  }
+    //functions
+      getProductQuantity,
+      addOneToCart,
+      removeOneItem,
+      deleteFromCart,
+      getTotalCost,
+      setCartItemCount,
+      purgeShoppingCart,
+      
+      cartItemCount,  
+      Items,
+      
+    }
   
+    return (
+      <ShoppingCartContext.Provider 
+      value={CatFunctionsAndItems}
+      >
+      {children}
+      </ShoppingCartContext.Provider>
+    );
 
-  //For debugging (will return Items to console for to debug)
-  const showInsideCart = () => {console.log(Items)}
-  
-  
-  
-  const CatFunctionsAndItems = {
-   
-   //functions
-    showInsideCart,
-    getProductQuantity,
-    addOneToCart,
-    removeOneItem,
-    deleteFromCart,
-    getTotalCoast,
-    setCartItemCount,
-    purgeShoppingCart,
-    
-    cartItemCount,  
-    Items,
-    
-  }
-  
-  return (
-    <ShoppingCartContext.Provider 
-    value={CatFunctionsAndItems}
-    >
-    {children}
-    </ShoppingCartContext.Provider>
-  );
+  };
 
-};
-
-
-
-  export const useShoppingCartContext = () => {
-
-    return useContext(ShoppingCartContext)
-  }
+export const useShoppingCartContext = () => {
+  return useContext(ShoppingCartContext)
+}

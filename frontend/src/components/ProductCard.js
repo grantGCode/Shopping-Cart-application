@@ -8,51 +8,53 @@ function ProductCard({products}) {
 
   return (
     <Form>
-     <Card>
-      <Card.Body class='px-0 my=5'>
-        <Row 
-          className='d-flex justify-content-between align-items-center'
-        >
-          <Col>
-            <h1>{products.title}</h1>
-          </Col>
-          <Col xs={6} md={6}>
-            <Image 
-              src='/images/imageShrit.jpg'
-              alt='image unavalible'
-              className='img-thumbnail'
-            />
-          </Col>    
-        </Row>
-        <Row className='d-flex justify-content-between align-items-center'>  
-          <Col class='d-flex justify-content-Start'>
-            <Image 
-              src='/images/imageShritTwo.jpg'
-              alt='image unavalible'
-              className='img-thumbnail '
-            />
-          </Col>
-          <Col class='d-flex justify-content-End'>
+      <Card>
+        <Card.Body className='px-0 my=5'>
+          <Row 
+            className='d-flex justify-content-between align-items-center'
+          >
+            <Col>
+              <h1>{products.title}</h1>
+            </Col>
+            <Col xs={6} md={6}>
+              <Image 
+                src='/images/imageShrit.jpg'
+                alt='image unavalible'
+                className='img-thumbnail'
+              />
+            </Col>    
+          </Row>
+          <Row className='d-flex justify-content-between align-items-center'>  
+            <Col className='d-flex justify-content-Start'>
+              <Image 
+                src='/images/imageShritTwo.jpg'
+                alt='image unavalible'
+                className='img-thumbnail '
+              />
+            </Col>
+            <Col className='d-flex justify-content-End'>
               <Col>
-                <h1>{`$${products.price}`}</h1>    
-              </Col>
-              <Col  className='my-5'>
-                <Button
-                  variant="secondary" 
-                  size="lg" 
-                  onClick={() => {cart.addOneToCart(products)}}
-                >
-                  + Add To Cart
-                </Button>
-              </Col>
-              <Col>
-                <Button
-                  variant="secondary" 
-                  size="lg"
-                  onClick={() => {cart.removeOneItem(products)}}
-                >
-                  - Remove From Cart
-                </Button>
+                <Col>
+                  <h1>{`$${products.cost}`}</h1>    
+                </Col>
+                <Col  className='my-5'>
+                  <Button
+                    variant="secondary" 
+                    size="lg" 
+                    onClick={() => {cart.addOneToCart(products)}}
+                  >
+                    + Add To Cart
+                  </Button>
+                </Col>
+                <Col>
+                  <Button
+                    variant="secondary" 
+                    size="lg"
+                    onClick={() => {cart.removeOneItem(products)}}
+                  >
+                    - Remove From Cart
+                  </Button>
+                </Col>  
               </Col>
             </Col>                            
           </Row>

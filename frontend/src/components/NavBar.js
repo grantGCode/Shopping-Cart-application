@@ -21,7 +21,7 @@ export default function NavBar() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({items: Items })
+        body: JSON.stringify({items: Items})
       });
   
       //redirect after response
@@ -60,10 +60,10 @@ export default function NavBar() {
                     type='button' 
                     onClick={handleShow}
                   >
-                    <p class='my-0 mx-0'>
+                    <p className='my-0 mx-0'>
                       <FontAwesomeIcon icon={faCartShopping} /> Your Cart Has:
                     </p> 
-                    <p class='my-0 mx-0'>
+                    <p className='my-0 mx-0'>
                       {cartItemCount} Items
                     </p>
                   </Button>
@@ -95,14 +95,14 @@ export default function NavBar() {
                           (
                             <Col align='center' > 
                               <ItemCard                   
-                                class="border border-primary"
+                                className="border border-primary"
                                 key={item.price}
                                 item={item}
                               />  
                             </Col>
                           ))
                         }
-                    <h2 className='Total'>Total: {getTotalCost}</h2>
+                    <h2 className='Total'>Total: {getTotalCost(Items)}</h2>
                     <Button 
                       className='btn mt-2'
                       variant='success'

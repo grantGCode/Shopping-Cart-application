@@ -1,4 +1,3 @@
-import  {useState} from 'react'
 import Navbar from '../components/NavBar.js'
 import { products, getProductData} from '../productStore.js'
 import {Row, Col, Form, Button, Stack} from 'react-bootstrap'
@@ -8,9 +7,7 @@ import { useShoppingCartContext } from '../CartContext.js'
 
 function Store() {
   
-  const { showInsideCart, purgeShoppingCart} = useShoppingCartContext();
-
-  
+  const {purgeShoppingCart} = useShoppingCartContext();
 
   return (
     <div>
@@ -18,7 +15,6 @@ function Store() {
             <Row
               xs={1} 
               md={3} 
-              
             >
               <Col 
                 className="justify-content-center"
@@ -27,8 +23,8 @@ function Store() {
                 (
                   <Col align='center' > 
                     <ProductCard 
-                      class="border border-primary"
-                      key={products.id}
+                      className="border border-primary"
+                      key={product.price}
                       products={product}
                       
                     />  
