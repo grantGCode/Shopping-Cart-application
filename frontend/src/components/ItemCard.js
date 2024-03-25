@@ -3,10 +3,12 @@ import {ShoppingCartContext} from '../CartContext'
 import {products, getProductData} from '../productStore'
 import {useContext} from "react"
 
-function ItemCard({item}, {products}) {
+function ItemCard({item}) {
 const itemData = useContext(ShoppingCartContext);
 
 const prodRef = getProductData(item.price)
+
+console.log(prodRef)
 
 return(
 <Form>

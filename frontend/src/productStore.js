@@ -9,7 +9,7 @@ export const products = [
 
 export const getProductData = (id) => {
 
-   let productData = products.find((product) => product.id === id)
+   let productData = products.find((product) => product.price === id)
 
    if(productData === undefined){
     console.log(`There is no product for this ID: ${id}`)
