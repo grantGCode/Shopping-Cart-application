@@ -4,10 +4,12 @@ const cors = require('cors');
 const app = express();
 const stripe = require('stripe')(process.env.STRIPE_API_KEY)
 
-app.use(cors());
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
 
 app.get('/', (req, res) => {
   console.log(req.body)
@@ -17,12 +19,9 @@ app.get('/', (req, res) => {
 
 app.post('/', async (req, res) => {
   try{
-    const newCart = req.body
-    const lineItem = newCart.map((item) =>{
-        return {...item}
-      })
+    const lineItem = req.body
     console.log(lineItem)
-    const session = await stripe.checkout.session.create({
+    const session = await stripe.checkout.sessions.create({
       line_item: lineItem,
       mode: 'payment',
       success_url: 'http://localhost:3000/Success.jsx',
@@ -31,6 +30,7 @@ app.post('/', async (req, res) => {
     res.send(JSON(session.url))
   }catch (e) {
     res.status(500).json({error: e.message})
+    console.log(e.message)
   }
 });
 

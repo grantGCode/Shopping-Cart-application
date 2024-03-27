@@ -8,8 +8,6 @@ const itemData = useContext(ShoppingCartContext);
 
 const prodRef = getProductData(item.price)
 
-console.log(prodRef)
-
 return(
 <Form>
     <Card>
