@@ -15,7 +15,6 @@ export const ShoppingCartContext = createContext(
   export const CartProvider = ({children}) => {
     //Shopping cart
     const [Items, setItems] = useState([]); 
-        
     //displayed count of total products in the cart on Stor.jsx
     const [cartItemCount, setCartItemCount] = useState(0);  
     
@@ -31,8 +30,11 @@ export const ShoppingCartContext = createContext(
 
       // If the products never was in the shopping cart
       if (Items.length === 0 ) {
-        // price = product id for Stripe's format.
-        setItems([{price: product.price, quantity: 1}])
+        setItems([{
+          id: product.id, 
+          stripeId: product.stripeId, 
+          quantity: 1
+        }])
       };
         
       // If the product is already in the shopping cart 
@@ -40,7 +42,7 @@ export const ShoppingCartContext = createContext(
       
         const newItems = Items.map((item) => {
           // If product being added is already in the shopping cart
-          if(item.price === product.price) {
+          if(item.id === product.id) {
             return {
               ...item,
               quantity: item.quantity + 1
@@ -51,9 +53,11 @@ export const ShoppingCartContext = createContext(
 
         // If another product being added is not already in the shopping cart
         if(!newItems.some((item) => 
-        item.price === product.price)){
-          // price = product id for Stripes requirements
-          newItems.push({price: product.price, quantity: 1})
+        item.id === product.id)){
+          newItems.push({
+            id: product.id, 
+            stripeId: product.stripeId,
+            quantity: 1})
         };           
         setItems(newItems)
       };
@@ -68,12 +72,12 @@ export const ShoppingCartContext = createContext(
         const currentQuantity = getProductQuantity(item.quantity)
 
         // if quantity is = 1 delete from cart
-        if(currentQuantity === 1 && item.price === product.price){
+        if(currentQuantity === 1 && item.id === product.id){
           return deleteFromCart(item)
         // Use setter & update object in state array by -= by 1
         }else if(currentQuantity > 1){
           return setItems(      
-          item.price === product.price
+          item.id === product.id
           ?
           [{...item, quantity: item.quantity -= 1}]
             : item
@@ -89,9 +93,9 @@ export const ShoppingCartContext = createContext(
         if (Items.length === 1){
           return [] 
         } else if(Items.length > 1 &&  
-          item.price !== itemToDelete.price)
+          item.id !== itemToDelete.price)
           { 
-            return  item.price !== itemToDelete.price
+            return  item.id !== itemToDelete.price
         }})
       );
     };
@@ -99,8 +103,8 @@ export const ShoppingCartContext = createContext(
     const getTotalCost = () => {
       let costOfItems = 0
       const totalPrice = Items.map(item => {   
-        if(item.price === products.price){
-          costOfItems = (item.quantity * getProductData(item.price).cost)
+        if(item.id === products.price){
+          costOfItems = (item.quantity * getProductData(item.id).cost)
           return costOfItems
         }else if(costOfItems <= 0){
           return '0.00'

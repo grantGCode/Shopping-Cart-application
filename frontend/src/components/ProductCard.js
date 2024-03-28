@@ -19,7 +19,7 @@ function ProductCard({products}) {
             <Col xs={6} md={6}>
               <Image 
                 src='/images/imageShrit.jpg'
-                alt='image unavalible'
+                alt='image unavailable'
                 className='img-thumbnail'
               />
             </Col>    
@@ -28,7 +28,7 @@ function ProductCard({products}) {
             <Col className='d-flex justify-content-Start'>
               <Image 
                 src='/images/imageShritTwo.jpg'
-                alt='image unavalible'
+                alt='image unavailable'
                 className='img-thumbnail '
               />
             </Col>

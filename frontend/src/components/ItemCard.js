@@ -6,7 +6,7 @@ import {useContext} from "react"
 function ItemCard({item}) {
 const itemData = useContext(ShoppingCartContext);
 
-const prodRef = getProductData(item.price)
+const prodRef = getProductData(item.id)
 
 return(
 <Form>

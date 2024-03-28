@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {Container, Navbar, Modal, Image, Col, Row, Button} from 'react-bootstrap'
+import {Container, Navbar, Modal, Col, Row, Button} from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { useShoppingCartContext } from '../CartContext';
@@ -96,7 +96,7 @@ export default function NavBar() {
                             <Col align='center' > 
                               <ItemCard                   
                                 className="border border-primary"
-                                key={item.price}
+                                key={item.id}
                                 item={item}
                               />  
                             </Col>
