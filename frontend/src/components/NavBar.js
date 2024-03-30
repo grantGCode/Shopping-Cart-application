@@ -89,14 +89,14 @@ export default function NavBar() {
                    
                 <div className='body'>
                   <Modal.Body >
-                    {Items && Items.length === 0 ? (
+                    {Items.length === 0 ? (
                       <p>There are no items in your shopping cart at this time.</p>
-                      ) : Items && Items.map((item) => 
+                      ) : Items.map((item) => 
                           (
                             <Col align='center' > 
                               <ItemCard                   
                                 className="border border-primary"
-                                key={item.id}
+                                key={Items.id}
                                 item={item}
                               />  
                             </Col>

@@ -4,7 +4,7 @@ import { useContext } from 'react';
 
 
 function ProductCard({products}) {
-  const cart = useContext(ShoppingCartContext);
+  const cartContext = useContext(ShoppingCartContext);
 
   return (
     <Form>
@@ -41,7 +41,7 @@ function ProductCard({products}) {
                   <Button
                     variant="secondary" 
                     size="lg" 
-                    onClick={() => {cart.addOneToCart(products)}}
+                    onClick={() => {cartContext.addOneToCart(products)}}
                   >
                     + Add To Cart
                   </Button>
@@ -50,7 +50,7 @@ function ProductCard({products}) {
                   <Button
                     variant="secondary" 
                     size="lg"
-                    onClick={() => {cart.removeOneItem(products)}}
+                    onClick={() => {cartContext.removeOneItem(products)}}
                   >
                     - Remove From Cart
                   </Button>

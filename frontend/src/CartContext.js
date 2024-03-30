@@ -66,14 +66,14 @@ export const ShoppingCartContext = createContext(
       
     // remove one product from shopping cart
     const removeOneItem = (product) => {
-
-     // check quantity of existing product
+      // check quantity of existing product
       Items.map((item) => {
         const currentQuantity = getProductQuantity(item.quantity)
-
+        
         // if quantity is = 1 delete from cart
         if(currentQuantity === 1 && item.id === product.id){
-          return deleteFromCart(item)
+          console.log('test')
+          return deleteFromCart(item.id)
         // Use setter & update object in state array by -= by 1
         }else if(currentQuantity > 1){
           return setItems(      
@@ -89,17 +89,15 @@ export const ShoppingCartContext = createContext(
     
     //remove a product from the shopping cart
     const deleteFromCart = (itemToDelete) => {
-      setItems(Items.filter(item => { 
-        if (Items.length === 1){
-          return [] 
-        } else if(Items.length > 1 &&  
-          item.id !== itemToDelete.price)
-          { 
-            return  item.id !== itemToDelete.price
-        }})
-      );
+      if (Items.length === 1){
+        setItems([])        
+      }else if(Items.length > 1){
+        setItems(Items.filter((item )=>item.id !== itemToDelete)
+        ); 
+      };
     };
-      
+    
+    // Will return total cost of all item in the cart
     const getTotalCost = () => {
       let costOfItems = 0
       const totalPrice = Items.map(item => {   
