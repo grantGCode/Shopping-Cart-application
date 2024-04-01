@@ -16,18 +16,18 @@ export const ShoppingCartContext = createContext(
     //Shopping cart
     const [Items, setItems] = useState([]); 
     //displayed count of total products in the cart on Stor.jsx
-    const [cartItemCount, setCartItemCount] = useState(0);  
+    const [cartItemCount, setCartItemCount] = useState(0);
+    const [TotalCost, setTotalCost] = useState(0);  
     
     const getProductQuantity = (quantity) => { 
-      //Line above Passing in param of the quantity of specific single product in cart 
-
+      //Line above Passing in param of the quantity of specific single product in cart
       const getQuantity = Items.find((item) => item.quantity === quantity)
       return getQuantity.quantity  
     }
 
     // add one product to shopping cart from productStore.js
     const addOneToCart = (product) =>{
-
+      
       // If the products never was in the shopping cart
       if (Items.length === 0 ) {
         setItems([{
@@ -37,7 +37,7 @@ export const ShoppingCartContext = createContext(
         }])
       };
         
-      // If the product is already in the shopping cart 
+      // If the product is already in the shopping cart s
       if(Items.length > 0) {
       
         const newItems = Items.map((item) => {
@@ -63,6 +63,7 @@ export const ShoppingCartContext = createContext(
         toast.info(`Your item has been added to cart!`)
       };
       updateProductInCartCount(true)
+      getTotalCost(Items)
     };
       
     // remove one product from shopping cart
@@ -102,15 +103,12 @@ export const ShoppingCartContext = createContext(
     
     // Will return total cost of all item in the cart
     const getTotalCost = () => {
-      let costOfItems = 0
-      const totalPrice = Items.map(item => {   
-        if(item.id === products.price){
-          costOfItems = (item.quantity * getProductData(item.id).cost)
-          return costOfItems
-        }else if(costOfItems <= 0){
-          return '0.00'
-        }
+      let totalCost = 0;
+      Items.map((item)=>{
+          const productData = getProductData(item.id);
+          totalCost += (item.quantity * productData.cost);
       })
+      return totalCost;
     };  
     
     // Used to display number of items in cart on the Store.jsx UI
@@ -147,8 +145,10 @@ export const ShoppingCartContext = createContext(
       setCartItemCount,
       purgeShoppingCart,
       
+      //State
       cartItemCount,  
       Items,
+      TotalCost,
       
     }
   

@@ -102,7 +102,7 @@ export default function NavBar() {
                             </Col>
                           ))
                         }
-                    <h2 className='Total'>Total: {getTotalCost(Items)}</h2>
+                    <h2 className='Total'>{`Total: $${getTotalCost()}`}</h2>
                     <Button 
                       className='btn mt-2'
                       variant='success'

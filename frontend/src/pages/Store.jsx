@@ -1,6 +1,6 @@
 import Navbar from '../components/NavBar.js'
 import { products} from '../productStore.js'
-import {Row, Col, Form, Button, Stack} from 'react-bootstrap'
+import {Row, Col, Form, Button,} from 'react-bootstrap'
 import ProductCard from '../components/ProductCard.js'
 import { useShoppingCartContext } from '../CartContext.js'
  

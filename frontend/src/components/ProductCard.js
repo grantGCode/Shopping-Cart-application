@@ -1,16 +1,9 @@
 import { Card, Button, Form, Row, Col, Image} from 'react-bootstrap';
-import { products } from '../productStore.js';
 import { ShoppingCartContext } from '../CartContext.js'
 import { useContext } from 'react';
 
-const productData = (product) => {
-  return products.find((product) => {return product})
-}
-
 function ProductCard({product}) {
-
   const cartContext = useContext(ShoppingCartContext);
-  
   return (
     <Form>
       <Card>
@@ -50,7 +43,7 @@ function ProductCard({product}) {
                   className='my-5'
                   variant="secondary" 
                   size="lg" 
-                  onClick={() => {cartContext.addOneToCart(products)}}
+                  onClick={() => {cartContext.addOneToCart(product)}}
                 >
                   + Add To Cart
                 </Button>
@@ -59,7 +52,7 @@ function ProductCard({product}) {
                 <Button
                   variant="secondary" 
                   size="lg"
-                  onClick={() => {cartContext.removeOneItem(products)}}
+                  onClick={() => {cartContext.removeOneItem(product)}}
                 >
                   - Remove From Cart
                 </Button>
