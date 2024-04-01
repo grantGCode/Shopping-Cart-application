@@ -1,11 +1,16 @@
 import { Card, Button, Form, Row, Col, Image} from 'react-bootstrap';
+import { products } from '../productStore.js';
 import { ShoppingCartContext } from '../CartContext.js'
 import { useContext } from 'react';
 
+const productData = (product) => {
+  return products.find((product) => {return product})
+}
 
-function ProductCard({products}) {
+function ProductCard({product}) {
+
   const cartContext = useContext(ShoppingCartContext);
-
+  
   return (
     <Form>
       <Card>
@@ -14,7 +19,7 @@ function ProductCard({products}) {
             className='d-flex justify-content-between align-items-center'
           >
             <Col>
-              <h1>{products.title}</h1>
+              <h1 className='text-center'>{product.title}</h1>
             </Col>
             <Col xs={6} md={6}>
               <Image 
@@ -24,39 +29,42 @@ function ProductCard({products}) {
               />
             </Col>    
           </Row>
-          <Row className='d-flex justify-content-between align-items-center'>  
+          <Row 
+            className='d-flex justify-content-between align-items-center'
+          >  
             <Col className='d-flex justify-content-Start'>
               <Image 
                 src='/images/imageShritTwo.jpg'
                 alt='image unavailable'
-                className='img-thumbnail '
+                className='img-thumbnail'
               />
             </Col>
-            <Col className='d-flex justify-content-End'>
+            <Col 
+              className='text-center'
+            >
               <Col>
-                <Col>
-                  <h1>{`$${products.cost}`}</h1>    
-                </Col>
-                <Col  className='my-5'>
-                  <Button
-                    variant="secondary" 
-                    size="lg" 
-                    onClick={() => {cartContext.addOneToCart(products)}}
-                  >
-                    + Add To Cart
-                  </Button>
-                </Col>
-                <Col>
-                  <Button
-                    variant="secondary" 
-                    size="lg"
-                    onClick={() => {cartContext.removeOneItem(products)}}
-                  >
-                    - Remove From Cart
-                  </Button>
-                </Col>  
+                <h1>{`$${product.cost}`}</h1>    
               </Col>
-            </Col>                            
+              <Col>
+                <Button
+                  className='my-5'
+                  variant="secondary" 
+                  size="lg" 
+                  onClick={() => {cartContext.addOneToCart(products)}}
+                >
+                  + Add To Cart
+                </Button>
+              </Col>
+              <Col>
+                <Button
+                  variant="secondary" 
+                  size="lg"
+                  onClick={() => {cartContext.removeOneItem(products)}}
+                >
+                  - Remove From Cart
+                </Button>
+              </Col>  
+            </Col>
           </Row>
         </Card.Body>
       </Card>

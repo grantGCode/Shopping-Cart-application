@@ -1,6 +1,6 @@
 import {Card, Form, Row, Col, Button} from 'react-bootstrap'
 import {ShoppingCartContext} from '../CartContext'
-import {products, getProductData} from '../productStore'
+import {getProductData} from '../productStore'
 import {useContext} from "react"
 
 function ItemCard({item}) {
@@ -21,7 +21,7 @@ return(
                         size="sm"
                         onClick={() => {cartContext.removeOneItem(item)}}
                     >
-                        - Remove From Cart
+                        - RemoveFrom Cart
                     </Button>
                 </Col>
             </Row>
