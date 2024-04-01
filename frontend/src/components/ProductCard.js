@@ -43,7 +43,7 @@ function ProductCard({product}) {
               className='text-center'
             >
               <Col>
-                <h1>{`$${product.cost}`}</h1>    
+                {/* <h1>{`$${product.cost}`}</h1>     */}
               </Col>
               <Col>
                 <Button

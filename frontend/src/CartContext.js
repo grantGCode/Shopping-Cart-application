@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { products, getProductData } from "./productStore";
-
+import { toast } from 'react-toastify'
 export const ShoppingCartContext = createContext(
   { 
     items: [],
@@ -60,6 +60,7 @@ export const ShoppingCartContext = createContext(
             quantity: 1})
         };           
         setItems(newItems)
+        toast.info(`Your item has been added to cart!`)
       };
       updateProductInCartCount(true)
     };
@@ -85,11 +86,13 @@ export const ShoppingCartContext = createContext(
         }
       })   
       updateProductInCartCount(false) 
+      toast.info(`One item has been removed from your cart!`)
     };    
     
     //remove a product from the shopping cart
     const deleteFromCart = (itemToDelete) => {
       if (Items.length === 1){
+        toast.info(`Your cart is now empty.`)
         setItems([])        
       }else if(Items.length > 1){
         setItems(Items.filter((item )=>item.id !== itemToDelete)
