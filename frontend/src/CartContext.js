@@ -105,7 +105,7 @@ export const ShoppingCartContext = createContext(
           const productData = getProductData(item.id);
           totalCost += (item.quantity * productData.cost);
       })
-      return totalCost;
+      return totalCost.toFixed(2);
     };  
     
     // Used to display number of items in cart on the Store.jsx UI
