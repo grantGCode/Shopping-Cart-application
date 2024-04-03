@@ -1,5 +1,6 @@
 import {useState} from 'react'
-import {Container, Navbar, Modal, Col, Row, Button} from 'react-bootstrap'
+import {Container, Navbar, Modal, Col, Row, Button, ToastContainer} from 'react-bootstrap'
+import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { useShoppingCartContext } from '../CartContext';
@@ -7,7 +8,6 @@ import ItemCard from './ItemCard'
 
 
 export default function NavBar() {
-  
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true)
@@ -32,12 +32,13 @@ export default function NavBar() {
           window.location.assign(responseData.url);
         }
       } else {
-        console.error('Failed to fetch:', response.status, response.statusText); 
+        toast.error('Failed to fetch:', response.status, response.statusText); 
       }
       
       //If const response should fail.
     } catch (error) {
-      console.error('An unexpected error occurred:', error);
+      toast.error('An unexpected error occurred:');
+      console.log(error);
     }
   };
   
@@ -106,7 +107,10 @@ export default function NavBar() {
                     <Button 
                       className='btn mt-2'
                       variant='success'
-                      onClick={buyCartContent}
+                      onClick={() => {
+                          toast.success('Possessing your order.');
+                          buyCartContent();
+                        }}
                     >Purchase Items
                     </Button>
                   </Modal.Body>
@@ -115,7 +119,7 @@ export default function NavBar() {
           </div>
         </Container>  
     </Navbar>
-    
+    <ToastContainer />
     </div>
   )
 }

@@ -1,6 +1,8 @@
 import { Card, Button, Form, Row, Col, Image} from 'react-bootstrap';
+
 import { ShoppingCartContext } from '../CartContext.js'
 import { useContext } from 'react';
+import { toast } from 'react-toastify';
 
 function ProductCard({product}) {
   const cartContext = useContext(ShoppingCartContext);
@@ -43,7 +45,10 @@ function ProductCard({product}) {
                   className='my-5'
                   variant="secondary" 
                   size="lg" 
-                  onClick={() => {cartContext.addOneToCart(product)}}
+                  onClick={() => {
+                    toast.info(`${product.title} added to shopping cart`);
+                    cartContext.addOneToCart(product);
+                  }}
                 >
                   + Add To Cart
                 </Button>
@@ -52,7 +57,10 @@ function ProductCard({product}) {
                 <Button
                   variant="secondary" 
                   size="lg"
-                  onClick={() => {cartContext.removeOneItem(product)}}
+                  onClick={() => {
+                    toast.info(`x1 ${product.title} removed from your cart.`);
+                    cartContext.removeOneItem(product);
+                  }}
                 >
                   - Remove From Cart
                 </Button>

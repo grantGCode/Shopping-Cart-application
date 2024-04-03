@@ -60,10 +60,8 @@ export const ShoppingCartContext = createContext(
             quantity: 1})
         };           
         setItems(newItems)
-        toast.info(`Your item has been added to cart!`)
       };
       updateProductInCartCount(true)
-      getTotalCost(Items)
     };
       
     // remove one product from shopping cart
@@ -73,9 +71,9 @@ export const ShoppingCartContext = createContext(
         const currentQuantity = getProductQuantity(item.quantity)
         
         // if quantity is = 1 delete from cart
-        if(currentQuantity === 1 && item.id === product.id){
-          console.log('test')
-          return deleteFromCart(item.id)
+        if(currentQuantity === 1 && 
+          item.id === product.id){
+            return deleteFromCart(item.id)
         // Use setter & update object in state array by -= by 1
         }else if(currentQuantity > 1){
           return setItems(      
@@ -87,7 +85,6 @@ export const ShoppingCartContext = createContext(
         }
       })   
       updateProductInCartCount(false) 
-      toast.info(`One item has been removed from your cart!`)
     };    
     
     //remove a product from the shopping cart
