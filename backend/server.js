@@ -3,11 +3,12 @@ try {
 } catch (error) {
   console.error('Error loading .env file:', error);
 }
-const stripeKey = process.env.REACT_APP_STRIPE_API_KEY
+const stripeKey = process.env.REACT_APP_STRIPE_API_KEY;
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const stripe = require('stripe')(stripeKey)
+const stripe = require('stripe')(stripeKey);
+const port = process.env.PORT || 5000;
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -24,13 +25,13 @@ app.post('/', async (req, res) => {
         price: item.stripeId, 
         quantity: item.quantity
       }
-    })   
+    });   
 
     if(lineItems === undefined || 
       !Array.isArray(lineItems)) {
-        console.error('Line Items is not set as a array.')
+        console.error('Line Items is not set as a array.');
         return null;
-    }
+    };
 
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
@@ -38,16 +39,16 @@ app.post('/', async (req, res) => {
       success_url: 'http://localhost:3000/Success.jsx',
       cancel_url:  'http://localhost:3000/Cancel.jsx',
     })
-    res.send(JSON.stringify(session.url))
+    res.send(JSON.stringify(session.url));
 
     if (res.status(200)){
-      console.log('success')
+      console.log('success');
     }
 
   }catch (e) {
-    res.status(500).json({error: e.message})
-    console.log(e.message)
+    res.status(500).json({error: e.message});
+    console.log(e.message);
   }
 });
 
-app.listen(5000, () => console.log('app is listening on port 5000.'))
+app.listen(port, () => console.log(`app is listening on port ${port}.`));
