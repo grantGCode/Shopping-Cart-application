@@ -16,7 +16,7 @@ export default function NavBar() {
 
   const buyCartContent = async () => {
     try {
-      const response = await fetch('https://elaborate-sunshine-85419d.netlify.app', { //update fetch
+      const response = await fetch('https://us-shopper-94591f5ffa5c.herokuapp.com/', { //update fetch
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -110,6 +110,7 @@ export default function NavBar() {
                       onClick={() => {
                           toast.success('Possessing your order.');
                           buyCartContent();
+                          //redirect to Stripe checkout session.url
                         }}
                     >Purchase Items
                     </Button>
