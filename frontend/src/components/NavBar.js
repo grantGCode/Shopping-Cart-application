@@ -16,7 +16,7 @@ export default function NavBar() {
 
   const buyCartContent = async () => {
     try {
-      const response = await fetch('http://localhost:5000', {
+      const response = await fetch('https://elaborate-sunshine-85419d.netlify.app', { //update fetch
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
