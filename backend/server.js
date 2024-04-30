@@ -14,7 +14,7 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 app.use(cors({
-  origin: 'https://660dfa02a9a42e773faf10b2--elaborate-sunshine-85419d.netlify.app'
+  origin: 'https://secure-swift-shoppers-cart.netlify.app'
 }));
 
 
@@ -37,10 +37,10 @@ app.post('/', async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       mode: 'payment',
-      success_url: 'https://660dfa02a9a42e773faf10b2--elaborate-sunshine-85419d.netlify.app/Success',
-      cancel_url:  'https://660dfa02a9a42e773faf10b2--elaborate-sunshine-85419d.netlify.app/Cancel',
+      success_url: 'https://secure-swift-shoppers-cart.netlify.app/success',
+      cancel_url:  'https://secure-swift-shoppers-cart.netlify.app/cancel',
     })
-    res.send(JSON.stringify(session.url));//check out page
+    res.json({url: session.url});
 
 
     if (res.status(200)){

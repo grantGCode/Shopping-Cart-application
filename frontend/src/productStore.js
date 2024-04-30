@@ -1,9 +1,9 @@
 export const products = [
-{ id: 1, stripeId:'price_1OqfinDvSYddFJCDaRiUhKbT',  title: 'Product 1', cost: 10.99 },
-{ id: 2, stripeId: 'price_1OqfjyDvSYddFJCDtbMEY6sK', title: 'Product 2', cost: 17.95 },
-{ id: 3, stripeId: 'price_1OqfkxDvSYddFJCD9JfnZG7I', title: 'Product 3', cost: 8.59 },
-{ id: 4, stripeId: 'price_1OqflbDvSYddFJCDrrrNbTJC', title: 'Product 4', cost: 25.00 },
-{ id: 5, stripeId: 'price_1OqfmYDvSYddFJCDC1h4RKfC', title: 'Product 5', cost: 19.99 }
+{ id: 1, stripeId:'price_1OqfinDvSYddFJCDaRiUhKbT',  title: 'Sun & Surf T-Shirt', img:'./images/sunAndSurfShirt.jpg', cost: 44.99 },
+{ id: 2, stripeId: 'price_1OqfjyDvSYddFJCDtbMEY6sK', title: 'Roman North T-Shirt', img:'./images/roamnorthShirt.jpg', cost: 44.99 },
+{ id: 3, stripeId: 'price_1OqfkxDvSYddFJCD9JfnZG7I', title: 'Mulehaus T-Shirt', img:'./images/mulehausShirt.jpg', cost: 39.99 },
+{ id: 4, stripeId: 'price_1OqflbDvSYddFJCDrrrNbTJC', title: 'Journey Shirt', img:'./images/journeyShirt.jpg', cost: 80.00 },
+{ id: 5, stripeId: 'price_1OqfmYDvSYddFJCDC1h4RKfC', title: 'Dream Top', img:'./images/dreamTop.jpg', cost: 46.00 }
 ]
 
 export const getProductData = (id) => {

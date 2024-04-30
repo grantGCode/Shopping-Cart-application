@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { products, getProductData } from "./productStore";
+import { getProductData } from "./productStore";
 import { toast } from 'react-toastify'
 export const ShoppingCartContext = createContext(
   { 
@@ -17,7 +17,7 @@ export const ShoppingCartContext = createContext(
     const [Items, setItems] = useState([]); 
     //displayed count of total products in the cart on Stor.jsx
     const [cartItemCount, setCartItemCount] = useState(0);
-    const [TotalCost, setTotalCost] = useState(0);  
+    const [TotalCost] = useState(0);  
     
     const getProductQuantity = (quantity) => { 
       //Line above Passing in param of the quantity of specific single product in cart
@@ -66,26 +66,22 @@ export const ShoppingCartContext = createContext(
       
     // remove one product from shopping cart
     const removeOneItem = (product) => {
-      // check quantity of existing product
-      Items.map((item) => {
+      // check quantity of existing item
+      Items.forEach((item) => {
         const currentQuantity = getProductQuantity(item.quantity)
-        
+    
         // if quantity is = 1 delete from cart
-        if(currentQuantity === 1 && 
-          item.id === product.id){
-            return deleteFromCart(item.id)
-        // Use setter & update object in state array by -= by 1
-        }else if(currentQuantity > 1){
-          return setItems(      
-          item.id === product.id
-          ?
-          [{...item, quantity: item.quantity -= 1}]
-            : item
-          )
+        if (currentQuantity === 1 && item.id === product.id) {
+          updateProductInCartCount(false);
+          deleteFromCart(item.id);
+          // if quantity > 1 the item quantity will be -= by 1
+        } else if (currentQuantity > 1 && item.id === product.id) {
+          updateProductInCartCount(false);
+          // Update the quantity of the item in the cart
+          item.quantity -= 1;
         }
-      })   
-      updateProductInCartCount(false) 
-    };    
+      });
+    }
     
     //remove a product from the shopping cart
     const deleteFromCart = (itemToDelete) => {
@@ -104,6 +100,7 @@ export const ShoppingCartContext = createContext(
       Items.map((item)=>{
           const productData = getProductData(item.id);
           totalCost += (item.quantity * productData.cost);
+          return totalCost
       })
       return totalCost.toFixed(2);
     };  
@@ -127,7 +124,7 @@ export const ShoppingCartContext = createContext(
     //Delete all products in cart 
     const purgeShoppingCart = () => {
       
-      return setItems([]),
+      setItems([])
       setCartItemCount(0)  
     }
   
